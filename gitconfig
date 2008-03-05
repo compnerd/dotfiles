@@ -1,0 +1,15 @@
+[color]
+   diff = auto
+   branch = auto
+   status = auto
+   interactive = auto
+
+[alias]
+   st = status
+   ci = commit
+   co = checkout
+   staged = diff --cached
+   amend = commit --amend
+
+[format]
+   numbered = auto
