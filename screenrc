@@ -1,0 +1,31 @@
+# Enable UTF-8 support
+defutf8 on
+
+# Detach on hangup
+autodetach on
+
+# Dont display the startup message
+startup_message off
+
+# Remove buffers from other apps
+altscreen on
+
+# Disable the annoying visual bell
+vbell off
+
+# Show a taskbar
+hardstatus lastline
+hardstatus string '%{= kG}[%{= kW}%?%-w%?%{=b kR}(%{= kW}%n: %t%{=b kR})%{= kW}%?%+w%?%{= kG}%=]'
+
+##
+## 256 Color Support
+##
+
+# Allow bold colors
+attrcolor b ".I"
+# Tell screen how to set colors. AB = background, AF = foreground
+termcapinfo xterm 'Co#256:AB=\E[48;6;%dm:AF=\E[38;5;%dm'
+# Erase background color with current background color
+defbce "on"
+# Set Terminal to screen-256color
+term "screen-256color"
