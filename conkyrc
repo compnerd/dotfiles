@@ -1,0 +1,58 @@
+background yes                   # daemonize
+out_to_console no                # print to stdout
+update_interval 1.0              # update interval in seconds
+
+gap_y 24                         # distance from y-axis edge
+alignment bottom_right           # location
+
+own_window yes                   # create own window (needed for nautilus)
+maximum_width 300                # maximum width of window
+minimum_size 280 5               # minimum window size
+own_window_type normal           # Window Type
+own_window_transparent yes       # Transparent Window
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+
+border_width 1                   # border width
+border_margin 4                  # border margins
+stippled_borders 8               # border stippling
+
+use_xft yes                      # XFT Antialiasing
+xftalpha 0.8                     # XFT Alpha blending
+double_buffer yes                # Double Buffered Rendering
+
+draw_shades no                   # text shadows
+draw_borders no                  # text borders
+draw_outline no                  # text outline
+
+default_color white              # default text color
+default_shade_color white        # default text shade color
+default_outline_color white      # default text outline color
+
+uppercase no                     # Display all text as uppercase
+use_spacer yes                   # Use spacers to prevent size fluctuations
+
+font -adobe-utopia-regular-r-normal-*-10-100-*-*-p-*-iso8859-1
+#xftfont Bitstream Vera Sans:size=10
+xftfont Terminus:size=9
+
+cpu_avg_samples 2                # number of samples to average to get CPU usage
+net_avg_samples 2                # number of samples to average to get NET usage
+no_buffers yes                   # subtract file system buffers from used memory
+
+TEXT
+${color}${nodename} ${alignr}${sysname} ${kernel}
+${color lightgrey}Uptime: ${color}${uptime} ${alignr}${color lightgrey}Time: ${color}${time %T}
+${color #5000A0}${hr 2}
+${color lightgrey}Governor: ${color}${exec cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor} ${alignr}${color lightgrey}Temperature: ${color}${acpitemp}°C
+${color lightgrey}CPU Frequency: ${alignc 2}${color}${freq} MHz ${alignr}${color lightgrey}Utilization: ${color}${cpu}%
+${color #5000A0}${cpubar}
+${color black}${cpugraph 32,309 FFFFFF 5000A0}
+${color lightgrey}Active Processes: ${color}${running_processes} ${alignr}${color lightgrey}Total Processes: ${color}${processes}
+${color lightgrey}RAM:  ${alignc}${color}${mem} of ${memmax} (${memperc}%)    ${alignr}${color #5000A0}${membar 5,100}
+${color lightgrey}Swap: ${alignc}${color}${swap} of ${swapmax} (${swapperc}%) ${alignr}${color #5000A0}${swapbar 5,100}
+${color #5000A0}${hr 2}
+${color lightgrey}Interface: ${color}eth1 ${alignr}${color lightgrey}IP Address: ${color}${addr eth1}
+${color lightgrey}Down: ${color #22CCFF}${downspeed eth1} k/s ${offset 70} ${color lightgrey}Up: ${color #22CCFF}${upspeed eth1} k/s
+${color black}${downspeedgraph eth1 32,150 FF0000 0000FF} ${alignr}${color black}${upspeedgraph eth1 32,150 0000FF FF0000}
+${color #5000A0}${hr 2}
+${color lightgrey}AC Adapter: ${color}${acpiacadapter} ${alignr}${color lightgrey}Battery: ${color}${battery BAT0}
