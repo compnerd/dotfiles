@@ -1,0 +1,32 @@
+import os
+import atexit
+import readline
+import rlcompleter
+
+HISTFILE = os.path.expanduser("~/.python/history")
+
+if os.path.exists(HISTFILE):
+   readline.read_history_file(HISTFILE)
+
+# Use ^N for complete
+readline.parse_and_bind("set editing-mode vi")
+readline.parse_and_bind("\C-n: complete")
+readline.parse_and_bind("tab: tab-insert")
+
+@atexit.register
+def save_history(histfile = HISTFILE):
+   import os
+   import readline
+   if not os.path.exists(histfile):
+      if not os.path.exists(os.path.dirname(histfile)):
+         os.mkdir(os.path.dirname(histfile))
+   readline.write_history_file(histfile)
+
+def clear():
+   import os
+   import sys
+   sys.stdout.write(os.popen('clear').read())
+
+del os, atexit, readline, rlcompleter, save_history, HISTFILE
+
+# vim: ft=python ts=3 sw=3:
