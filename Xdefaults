@@ -1,0 +1,27 @@
+/* XFT */
+Xft.dpi: 72
+
+/* XTerm */
+XTerm*utf8: 1
+
+XTerm*background: black
+XTerm*foreground: white
+
+XTerm*termName: xterm-256color
+
+XTerm*eightBitInput: false
+XTerm*eightBitOutput: true
+XTerm*eightBitControl: false
+
+/* UXTERM */
+UXTerm*faceSize: 10
+UXTerm*faceName: Terminus
+
+UXTerm*background: black
+UXTerm*foreground: white
+
+UXTerm*termName: xterm-256color
+
+UXTerm*eightBitInput: false
+UXTerm*eightBitOutput: true
+UXTerm*eightBitControl: false
