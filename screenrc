@@ -1,5 +1,6 @@
 # Enable UTF-8 support
 defutf8 on
+encoding utf-8
 
 # Detach on hangup
 autodetach on
@@ -14,8 +15,7 @@ altscreen on
 vbell off
 
 # Show a taskbar
-hardstatus lastline
-hardstatus string '%{= kG}[%{= kW}%?%-w%?%{=b kR}(%{= kW}%n: %t%{=b kR})%{= kW}%?%+w%?%{= kG}%=]'
+hardstatus alwayslastline '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m/%d %{W}%c %{g}]'
 
 ##
 ## 256 Color Support
