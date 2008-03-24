@@ -30,8 +30,8 @@ set wildmenu               " Menu on completion please
 set wildmode=longest,full  " Match the longest substring, complete with first
 set wildignore=*.o,*~      " Ignore temp files in wildmenu
 set scrolloff=3            " Show 3 lines of context during scrolls
-set sidescrolloff=2        " Show 2 columes of context during scrolls
-set backspace=2            " Normal backspace behaviour
+set sidescrolloff=2        " Show 2 columns of context during scrolls
+set backspace=2            " Normal backspace behavior
 set textwidth=80           " Break lines at 80 characters
 set hidden                 " Allow flipping of buffers without saving
 
@@ -117,7 +117,9 @@ if has("gui")
    set guioptions-=t       " Disable menu tear-offs
    set guioptions-=T       " Disable the toolbar
    set guioptions-=m       " Disable the menu
+   set guioptions-=R       " Disable the (right) scrollbar
    set guioptions-=r       " Disable the (right) scrollbar
+   set guioptions-=l       " Disable the (left) scrollbar
    set guioptions-=L       " Disable the (left) scrollbar
 endif
 
@@ -137,7 +139,7 @@ autocmd BufRead,BufNewFile *
 " fix up procmail rule detection
 autocmd BufRead procmailrc :setfiletype procmail
 
-" --- cscope/ctags setup ----
+" ---- cscope/ctags setup ----
 if has('cscope') && filereadable('/usr/bin/cscope')
    " Search cscope and ctags, in that order
    set cscopetag
@@ -169,6 +171,9 @@ fun! <SID>cabbrev()
 
    iab #d #define
    iab #D #define
+
+   iab #e #endif
+   iab #E #endif
 endfun
 autocmd FileType c,cpp :call <SID>cabbrev()
 
@@ -205,3 +210,6 @@ map K K<cr>
 " Toggle numbers with F12
 nmap <silent> <F12> :silent set number!<CR>
 imap <silent> <F12> <C-O>:silent set number!<CR>
+
+" Don't force column 0 for #
+inoremap # X<BS>#
