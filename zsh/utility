@@ -23,14 +23,16 @@ function extract()
       return
    fi
 
-   local mime=$(file -iL "$1" | awk '{ split($NF, parts, "/"); print parts[2]; }')
+   # TODO Fix extraction basd on mime-type
+
+   #local mime=$(file -iL "$1" | awk '{ split($NF, parts, "/"); print parts[2]; }')
 
    case "${(L)mime}" in
-      x-bzip2) bzip2 -dc "${1}" > $(basename "${1%.*}") ;;
-      x-gzip)  gzip -dc "${1}" > $(basename "${1%.*}") ;;
-      x-tar)   tar xf "${1}" --no-same-owner ;;
-      x-zip)   unzip -qo "${1}" ;;
-      *)
+   #   x-bzip2) bzip2 -dc "${1}" > $(basename "${1%.*}") ;;
+   #   x-gzip)  gzip -dc "${1}" > $(basename "${1%.*}") ;;
+   #   x-tar)   tar xf "${1}" --no-same-owner ;;
+   #   x-zip)   unzip -qo "${1}" ;;
+   #   *)
          case "${(L)1}" in
             *.tar)
                tar xf "${1}" --no-same-owner
@@ -69,8 +71,8 @@ function extract()
                echo "Unable to extract '"$1"'"
                return 1
             ;;
-         esac
-      ;;
+   #      esac
+   #   ;;
    esac
 
    return $?
