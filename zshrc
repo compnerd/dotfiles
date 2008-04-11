@@ -7,8 +7,10 @@ autoload -Uz compinit; compinit -d "${HOME}/.zsh/.zcompdump"
 autoload -Uz age
 autoload -Uz zmv
 
-autoload -Uz url-quote-magic
-zle -N self-insert url-quote-magic
+if [[ ${ZSH_VERSION//.} -gt 420 ]] ; then
+   autoload -Uz url-quote-magic
+   zle -N self-insert url-quote-magic
+fi
 
 # disable core dumps
 limit coredumpsize 0
@@ -50,7 +52,7 @@ unsetopt HIST_BEEP
 unsetopt EXTENDED_HISTORY
 
 # colors
-[ -f /etc/DIR_COLORS ] && eval $(dircolors -b /etc/DIR_COLORS)
+[[ -f /etc/DIR_COLORS ]] && eval $(dircolors -b /etc/DIR_COLORS)
 export ZLSCOLORS="${LS_COLORS}"
 
 # aliases
@@ -60,6 +62,8 @@ alias ls='ls -h --color=auto'
 alias grep='grep -d skip --color=auto'
 
 alias df='df -h'
+alias du='du -h'
+
 alias ping='ping -c4'
 
 alias cp='nocorrect cp'
@@ -70,6 +74,9 @@ alias mkdir='nocorrect mkdir'
 alias :q='exit'
 alias :wq='exit'
 
+# Prefer sys-process/time over the builtin
+[[ -x =time ]] && alias time='command time'
+
 # keybindings
 set -o vi
 
@@ -78,6 +85,9 @@ bindkey ' ' magic-space
 bindkey -M vicmd '' redo
 bindkey -M vicmd 'u' undo
 bindkey -M vicmd 'ga' what-cursor-position
+
+bindkey -M viins '' history-incremental-search-backward
+bindkey -M viins '' history-incremental-search-forward
 
 # prompt
 if [[ -z ${SSH_TTY} ]] ; then
@@ -110,7 +120,7 @@ zstyle ':completion:*:matches' group 'yes'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 # users are all useless, ignore them always
-zstyle -e ':completion:*' users "reply=( root ${USERNAME} )"
+zstyle -e ':completion:*' users "reply=( root '${USERNAME}' )"
 
 # caching good
 zstyle ':completion:*' use-cache on
@@ -124,10 +134,10 @@ zstyle ':completion:*:descriptions' format $'\e[01;33m -- %d -- \e[00;00m'
 # kill/killall menu and general process listing
 zstyle ':completion:*:*:kill:*' menu yes select
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-zstyle ':completion:*:*:kill:*:processes' command 'ps -U $USERNAME -o pid,cmd | sed "/ps -U $USERNAME -o pid,cmd/d"'
+zstyle ':completion:*:*:kill:*:processes' command 'ps -U $USERNAME -o pid,cmd | sed "/ps -U '${USERNAME}' -o pid,cmd/d"'
 
 zstyle ':completion:*:*:killall:*' menu yes select
-zstyle ':completion:*:*:killall:*:processes-names' command 'ps -U $USERNAME -o cmd'
+zstyle ':completion:*:*:killall:*:processes-names' command 'ps -U '${USERNAME}' -o cmd'
 
 zstyle ':completion:*:processes-names' command 'ps axho command'
 
