@@ -2,14 +2,19 @@
 # Saleem Abdulrasool <compnerd@compnerd.org>
 # vim:set nowrap:
 
-autoload -Uz compinit; compinit -d "${HOME}/.zsh/.zcompdump"
-
-autoload -Uz age
-autoload -Uz zmv
-
 if [[ ${ZSH_VERSION//.} -gt 420 ]] ; then
+   autoload -Uz compinit; compinit -d "${HOME}/.zsh/.zcompdump"
+
+   autoload -Uz age
+   autoload -Uz zmv
+
    autoload -Uz url-quote-magic
    zle -N self-insert url-quote-magic
+else
+   autoload -U compinit; compinit -d "${HOME}/.zsh/.zcompdump"
+
+   autoload -U age
+   autoload -U zmv
 fi
 
 # disable core dumps
@@ -74,11 +79,10 @@ alias mkdir='nocorrect mkdir'
 alias :q='exit'
 alias :wq='exit'
 
-# Prefer sys-process/time over the builtin
 [[ -x =time ]] && alias time='command time'
 
 # keybindings
-set -o vi
+bindkey -v
 
 bindkey ' ' magic-space
 
@@ -100,17 +104,18 @@ fi
 # terminal titles
 case ${TERM} in
    screen*)
-      precmd() { print -Pn "\ek%n@%m ${1%% *}\e\\" }
-      preexec() { print -Pn "\ek%n@%m ${1%% *}\e\\" }
+      precmd() { print -Pn "\ek%n@%m: ${1:-${SHELL}}\e\\" }
+      preexec() { print -Pn "\ek%n@%m: ${1:-${SHELL}}\e\\" }
    ;;
    GNOME|*xterm*|rxvt*|(dt|k|E|a)term)
-      precmd() { print -Pn "\e]2;%n@%m ${1%% *}\a" }
-      preexec() { print -Pn "\e]2;%n@%m ${1%% *}\a" }
+      precmd() { print -Pn "\e]2;%n@%m: ${1:-${SHELL}}\a" }
+      preexec() { print -Pn "\e]2;%n@%m: ${1:-${SHELL}}\a" }
    ;;
 esac
 
 # completion menu
 zstyle ':completion:*' menu select=1
+zstyle ':completion:*:functions' ignored-patterns '_*'
 
 # group matches
 zstyle ':completion:*' group-name ''
@@ -133,8 +138,8 @@ zstyle ':completion:*:descriptions' format $'\e[01;33m -- %d -- \e[00;00m'
 
 # kill/killall menu and general process listing
 zstyle ':completion:*:*:kill:*' menu yes select
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-zstyle ':completion:*:*:kill:*:processes' command 'ps -U $USERNAME -o pid,cmd | sed "/ps -U '${USERNAME}' -o pid,cmd/d"'
+zstyle ':completion:*:*:kill:*:processes' command 'ps -U '${USERNAME}' -o pid,cmd | sed "/ps -U '${USERNAME}' -o pid,cmd/d"'
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=31;31'
 
 zstyle ':completion:*:*:killall:*' menu yes select
 zstyle ':completion:*:*:killall:*:processes-names' command 'ps -U '${USERNAME}' -o cmd'
@@ -153,15 +158,20 @@ zstyle ':completion:*:rm:*' ignore-line yes
 zstyle ':completion:*:scp:*' ignore-line yes
 zstyle ':completion:*:diff:*' ignore-line yes
 
+# Keep track of other people accessing the box
+watch=( all )
+export LOGCHECK=30
+export WATCHFMT=$'\e[01;36m'" -- %n@%m has %(a.Logged In.Logged out) --"$'\e[00;00m'
+
 # directory hashes
 if [[ -d "${HOME}/sandbox" ]] ; then
    hash -d sandbox="${HOME}/sandbox"
 fi
 
 if [[ -d "${HOME}/work" ]] ; then
-   hash -d work="$HOME/work"
+   hash -d work="${HOME}/work"
 
-   for dir in $(ls -d "${HOME}"/work/*(/D)) ; do
+   for dir in "${HOME}"/work/*(N-/) ; do
       hash -d $(basename "${dir}")="${dir}"
    done
 fi
