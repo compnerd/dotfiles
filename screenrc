@@ -5,7 +5,7 @@ encoding utf-8
 # Detach on hangup
 autodetach on
 
-# Dont display the startup message
+# Dont disaply the startup message
 startup_message off
 
 # Remove buffers from other apps
@@ -14,8 +14,8 @@ altscreen on
 # Disable the annoying visual bell
 vbell off
 
-# Show a taskbar
-hardstatus alwayslastline '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m/%d %{W}%c %{g}]'
+# Pretty status line
+caption always "%{= B}[ %{G}$USER@%H%{-} ][%= %{w}%?%-Lw%{-}%{r}(%{W}%n*%f %t%{-})%{-}%{w}%?%+Lw%{-} %=][ %{G}%m/%d%{-} %{W}%c %{-}]"
 
 ##
 ## 256 Color Support
@@ -27,5 +27,5 @@ attrcolor b ".I"
 termcapinfo xterm 'Co#256:AB=\E[48;6;%dm:AF=\E[38;5;%dm'
 # Erase background color with current background color
 defbce "on"
-# Set Terminal to screen-256color
-term "screen-256color"
+# Set Terminal to xterm-256color
+term "xterm-256color"
