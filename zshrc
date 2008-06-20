@@ -42,6 +42,8 @@ setopt MAGIC_EQUAL_SUBST   # special expansion after all =
 unsetopt BEEP              # stop beeping!
 unsetopt LIST_BEEP         # seriously, stop beeping!
 
+unsetopt NO_MATCH          # dont error on no glob matches
+
 # history
 export HISTSIZE=1000
 export SAVEHIST=1000
@@ -57,8 +59,7 @@ unsetopt HIST_BEEP
 unsetopt EXTENDED_HISTORY
 
 # colors
-[[ -f /etc/DIR_COLORS ]] && eval $(dircolors -b /etc/DIR_COLORS)
-export ZLSCOLORS="${LS_COLORS}"
+eval $(dircolors -b $([ -f /etc/DIR_COLORS ] && echo "/etc/DIR_COLORS"))
 
 # aliases
 alias cd..='cd ..'
@@ -79,7 +80,7 @@ alias mkdir='nocorrect mkdir'
 alias :q='exit'
 alias :wq='exit'
 
-[[ -x =time ]] && alias time='command time'
+( type -p time &> /dev/null ) && alias time='command time'
 
 # keybindings
 bindkey -v
@@ -102,16 +103,8 @@ else
 fi
 
 # terminal titles
-case ${TERM} in
-   screen*)
-      precmd() { print -Pn "\ek%n@%m: ${1:-${SHELL}}\e\\" }
-      preexec() { print -Pn "\ek%n@%m: ${1:-${SHELL}}\e\\" }
-   ;;
-   GNOME|*xterm*|rxvt*|(dt|k|E|a)term)
-      precmd() { print -Pn "\e]2;%n@%m: ${1:-${SHELL}}\a" }
-      preexec() { print -Pn "\e]2;%n@%m: ${1:-${SHELL}}\a" }
-   ;;
-esac
+precmd() { print -Pn "\e]0;%n@%m: $(print -Pn "%40>...>${1:-${SHELL}}")\007" }
+preexec() { print -Pn "\e]0;%n@%m: $(print -Pn "%40>...>${1:-${SHELL}}")\007" }
 
 # completion menu
 zstyle ':completion:*' menu select=1
