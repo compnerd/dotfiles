@@ -52,11 +52,13 @@ endfun
 autocmd BufEnter * :call WideFold()
 
 " ---- Spelling ----
-set spelllang=en_us        " US English Spelling please
+if (v:version >= 700)
+   set spelllang=en_us        " US English Spelling please
 
-" Toggle spellchecking with F10
-nmap <silent> <F10> :silent set spell!<CR>
-imap <silent> <F10> <C-O>:silent set spell!<CR>
+   " Toggle spellchecking with F10
+   nmap <silent> <F10> :silent set spell!<CR>
+   imap <silent> <F10> <C-O>:silent set spell!<CR>
+endif
 
 " Always display a pretty statusline
 set title
@@ -89,11 +91,11 @@ endfun
 
 " Set a nice bright colorscheme
 if has("gui_running") || &t_Co == 88 || &t_Co == 256
-   call LoadColorScheme("inkpot:vividchalk") " Set the colorscheme
    set background=light                      " We use a light background here
+   call LoadColorScheme("inkpot:vividchalk") " Set the colorscheme
 else
-   call LoadColorScheme("zellner:elflord")   " Set the colorscheme
    set background=dark                       " We use a dark background here
+   call LoadColorScheme("zellner:elflord")   " Set the colorscheme
 endif
 
 " Show trailing whitespace visually
@@ -138,6 +140,10 @@ autocmd BufRead,BufNewFile *
 
 " fix up procmail rule detection
 autocmd BufRead procmailrc :setfiletype procmail
+
+" sc files are scons files
+autocmd BufRead,BufNewFile *.sc set ft=scons
+autocmd BufRead,BufNewFile SCons* set ft=scons
 
 " ---- cscope/ctags setup ----
 if has('cscope') && filereadable('/usr/bin/cscope')
@@ -201,7 +207,7 @@ map Y y$
 " vK is stupid
 vmap K k
 
-" W is annoying
+" :W is annoying
 nmap :W :w
 
 " just continue
