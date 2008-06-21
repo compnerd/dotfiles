@@ -3,6 +3,7 @@
 
 function unkey-host()
 {
+   if [[ ${#} -ne 1 ]] && return 1
    sed -i -e "/$1/d" $HOME/.ssh/known_hosts
 }
 
@@ -23,11 +24,9 @@ function extract()
       return
    fi
 
-   # TODO Fix extraction basd on mime-type
-
    #local mime=$(file -iL "$1" | awk '{ split($NF, parts, "/"); print parts[2]; }')
 
-   case "${(L)mime}" in
+   #case "${(L)mime}" in
    #   x-bzip2) bzip2 -dc "${1}" > $(basename "${1%.*}") ;;
    #   x-gzip)  gzip -dc "${1}" > $(basename "${1%.*}") ;;
    #   x-tar)   tar xf "${1}" --no-same-owner ;;
@@ -38,8 +37,8 @@ function extract()
                tar xf "${1}" --no-same-owner
             ;;
             *.tar.gz|*.tgz|*.tar.Z)
-                      tar zxf "${1}" --no-same-owner
-                 ;;
+               tar zxf "${1}" --no-same-owner
+            ;;
             *.tar.bz2|*.tbz2)
                tar jxf "${1}" --no-same-owner
             ;;
@@ -71,9 +70,9 @@ function extract()
                echo "Unable to extract '"$1"'"
                return 1
             ;;
-   #      esac
+         esac
    #   ;;
-   esac
+   #esac
 
    return $?
 }
