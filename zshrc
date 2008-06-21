@@ -80,6 +80,7 @@ alias mkdir='nocorrect mkdir'
 alias :q='exit'
 alias :wq='exit'
 
+# prefer sys-process/time over builtin time
 ( type -p time &> /dev/null ) && alias time='command time'
 
 # keybindings
