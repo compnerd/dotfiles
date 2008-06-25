@@ -142,8 +142,8 @@ autocmd BufRead,BufNewFile *
 autocmd BufRead procmailrc :setfiletype procmail
 
 " sc files are scons files
-autocmd BufRead,BufNewFile *.sc set ft=scons
-autocmd BufRead,BufNewFile SCons* set ft=scons
+autocmd BufRead,BufNewFile *.sc set ft=python
+autocmd BufRead,BufNewFile SCons* set ft=python
 
 " ---- cscope/ctags setup ----
 if has('cscope') && filereadable('/usr/bin/cscope')
