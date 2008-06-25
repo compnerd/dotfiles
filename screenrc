@@ -1,5 +1,6 @@
 # Enable UTF-8 support
 defutf8 on
+utf8 on on
 encoding utf-8
 
 # Detach on hangup
