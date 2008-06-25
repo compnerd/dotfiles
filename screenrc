@@ -15,6 +15,9 @@ altscreen on
 # Disable the annoying visual bell
 vbell off
 
+# Alway start at home
+chdir
+
 # Pretty status line
 caption always "%{= B}[ %{G}$USER@%H%{-} ][%= %{w}%?%-Lw%{-}%{r}(%{W}%n*%f %t%{-})%{-}%{w}%?%+Lw%{-} %=][ %{G}%m/%d%{-} %{W}%c %{-}]"
 
