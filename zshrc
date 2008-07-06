@@ -105,8 +105,10 @@ else
 fi
 
 # terminal titles
-precmd() { print -Pn "\e]0;%n@%m: $(print -Pn "%40>...>${1:-${SHELL}}")\007" }
-preexec() { print -Pn "\e]0;%n@%m: $(print -Pn "%40>...>${1:-${SHELL}}")\007" }
+if [[ "${TERM}" != "linux" ]] ; then
+   precmd() { print -Pn "\e]0;%n@%m: $(print -Pn "%40>...>${1:-${SHELL}}")\007" }
+   preexec() { print -Pn "\e]0;%n@%m: $(print -Pn "%40>...>${1:-${SHELL}}")\007" }
+fi
 
 # completion menu
 zstyle ':completion:*' menu select=1
