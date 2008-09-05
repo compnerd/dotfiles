@@ -114,6 +114,9 @@ else
    endif
 endif
 
+" Dont copy the listchars when copying
+set mouse=nvi
+
 " Get rid of the annoying UI
 if has("gui")
    set guioptions-=t       " Disable menu tear-offs
@@ -219,3 +222,6 @@ imap <silent> <F12> <C-O>:silent set number!<CR>
 
 " Don't force column 0 for #
 inoremap # X<BS>#
+
+" Add a simple way to add a copyright notice
+inoremap <leader>c Copyright <c-r>=strftime('%Y')<CR> Saleem Abdulrasool <compnerd@compnerd.org><CR>
