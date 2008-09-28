@@ -2,19 +2,14 @@
 # Saleem Abdulrasool <compnerd@compnerd.org>
 # vim:set nowrap:
 
+autoload -Uz compinit; compinit -d "${HOME}/.zsh/.zcompdump"
+
+autoload -Uz age
+autoload -Uz zmv
+
 if [[ ${ZSH_VERSION//.} -gt 420 ]] ; then
-   autoload -Uz compinit; compinit -d "${HOME}/.zsh/.zcompdump"
-
-   autoload -Uz age
-   autoload -Uz zmv
-
    autoload -Uz url-quote-magic
    zle -N self-insert url-quote-magic
-else
-   autoload -U compinit; compinit -d "${HOME}/.zsh/.zcompdump"
-
-   autoload -U age
-   autoload -U zmv
 fi
 
 # disable core dumps
@@ -61,6 +56,12 @@ unsetopt EXTENDED_HISTORY
 # colors
 eval $(dircolors -b $([ -f /etc/DIR_COLORS ] && echo "/etc/DIR_COLORS"))
 
+case "${TERM}" in
+   xterm*)
+      ( infocmp xterm-256color &> /dev/null ) && export TERM=xterm-256color
+   ;;
+esac
+
 # aliases
 alias cd..='cd ..'
 
@@ -82,7 +83,12 @@ alias :wq='exit'
 
 alias info='info --vi-keys'
 
-[[ -x =time ]] && alias time='command time'
+( type -p time &> /dev/null ) && alias time='command time'
+
+if type -p hilite &> /dev/null ; then
+   alias make='hilite make'
+   alias scons='hilite scons'
+fi
 
 # keybindings
 bindkey -v
