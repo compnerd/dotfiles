@@ -1,1 +1,10 @@
+/* Hide the tab buttons on FF 1.x and 2.x */
 .tabs-alltabs-stack { display: none !important; }
+
+/* Disable the FF 3.x URL bar ugliness */
+#urlbar-search-splitter { display: none ! important; }
+#start-button { display: none !important; }
+#go-button { display: none !important; }
+
+/* Always show the status bar in vimperator */
+#status-bar { visibility: visible; }
