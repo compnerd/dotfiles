@@ -89,13 +89,16 @@ fun! LoadColorScheme(schemes)
    endwhile
 endfun
 
-" Set a nice bright colorscheme
-if has("gui_running") || &t_Co == 88 || &t_Co == 256
-   set background=light                      " We use a light background here
-   call LoadColorScheme("inkpot:vividchalk") " Set the colorscheme
+" We like dark backgrounds
+set background=dark
+
+" Select colorschemes based on how we are running
+if has("gui_running")
+   call LoadColorScheme("molokai:moria:inkpot:zenburn:vividchalk:darkspectrum")
+elseif &t_Co == 88 || &t_Co == 256
+   call LoadColorScheme("inkpot:vividchalk")
 else
-   set background=dark                       " We use a dark background here
-   call LoadColorScheme("zellner:elflord")   " Set the colorscheme
+   call LoadColorScheme("elflord:zellner")
 endif
 
 " Show trailing whitespace visually
@@ -210,8 +213,9 @@ map Y y$
 " vK is stupid
 vmap K k
 
-" :W is annoying
-nmap :W :w
+" :W and :Q are annoying
+cmap W w
+cmap Q q
 
 " just continue
 map K K<cr>
@@ -225,3 +229,12 @@ inoremap # X<BS>#
 
 " Add a simple way to add a copyright notice
 inoremap <leader>c Copyright <c-r>=strftime('%Y')<CR> Saleem Abdulrasool <compnerd@compnerd.org><CR>
+
+autocmd BufReadPost *
+   \ if line("'\"") > 0 && line("'\"") <= line("$") |
+   \  exe "normal g'\"" |
+   \ endif
+
+" securemodelines.vim
+let g:secure_modelines_verbose = 1
+let g:secure_modelines_leave_modeline = 1
