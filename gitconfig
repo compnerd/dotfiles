@@ -13,3 +13,6 @@
 
 [format]
    numbered = auto
+
+[diff]
+   renames = copy
