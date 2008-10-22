@@ -219,7 +219,17 @@ cmap Q q
 
 if has("gui")
    source $VIMRUNTIME/ftplugin/man.vim
-   nmap <silent> K :Man <C-R>=expand("<cword>")<CR><CR>
+
+   fun! ShowManPage(sct,page)
+      if a:sct == 0
+         exe ':Man ' . a:page
+      else
+         exe ':Man ' . a:sct . ' ' . a:page
+      endif
+   endfun
+
+   nmap <silent> K :<C-U>call ShowManPage(v:count, expand("<cword>"))<CR>
+
    autocmd FileType man set nolist ts=8
 else
    nmap K K<CR>
