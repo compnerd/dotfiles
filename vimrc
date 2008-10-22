@@ -217,8 +217,13 @@ vmap K k
 cmap W w
 cmap Q q
 
-" just continue
-map K K<cr>
+if has("gui")
+   source $VIMRUNTIME/ftplugin/man.vim
+   nmap <silent> K :Man <C-R>=expand("<cword>")<CR><CR>
+   autocmd FileType man set nolist ts=8
+else
+   nmap K K<CR>
+endif
 
 " Toggle numbers with F12
 nmap <silent> <F12> :silent set number!<CR>
