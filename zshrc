@@ -1,6 +1,6 @@
 # .zshrc
 # Saleem Abdulrasool <compnerd@compnerd.org>
-# vim:set nowrap:
+# vim: set nowrap:
 
 autoload -Uz compinit; compinit -d "${HOME}/.zsh/.zcompdump"
 
@@ -11,6 +11,9 @@ if [[ ${ZSH_VERSION//.} -gt 420 ]] ; then
    autoload -Uz url-quote-magic
    zle -N self-insert url-quote-magic
 fi
+
+autoload -Uz edit-command-line
+zle -N edit-command-line
 
 # disable core dumps
 limit coredumpsize 0
@@ -97,6 +100,7 @@ bindkey ' ' magic-space
 
 bindkey -M vicmd '' redo
 bindkey -M vicmd 'u' undo
+bindkey -M vicmd 'v' edit-command-line
 bindkey -M vicmd 'ga' what-cursor-position
 
 bindkey -M viins '' history-incremental-search-backward
