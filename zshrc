@@ -116,8 +116,8 @@ fi
 
 # terminal titles
 if [[ "${TERM}" != "linux" ]] ; then
-   precmd() { print -Pn "\e]0;%n@%m: $(print -Pn "%40>...>${1:-${SHELL}}")\007" }
-   preexec() { print -Pn "\e]0;%n@%m: $(print -Pn "%40>...>${1:-${SHELL}}")\007" }
+   precmd() { print -Pn "\e]0;%n@%m: ${(q)$(print -rPn "%40>...>${(V)1:-${SHELL}}" | tr '\n' ';')}\007" }
+   preexec() { print -Pn "\e]0;%n@%m: ${(q)$(print -rPn "%40>...>${(V)1:-${SHELL}}" | tr '\n' ';')}\007" }
 fi
 
 # completion menu
