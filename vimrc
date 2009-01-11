@@ -34,6 +34,7 @@ set sidescrolloff=2        " Show 2 columns of context during scrolls
 set backspace=2            " Normal backspace behavior
 set textwidth=80           " Break lines at 80 characters
 set hidden                 " Allow flipping of buffers without saving
+set nomodeline             " modelines are insecure, use securemodelines
 
 " ---- Filetypes ----
 filetype on                " Detect filetype by extension
@@ -66,12 +67,6 @@ set laststatus=2
 set shortmess=atI
 set statusline=Editing:\ %r%t%m\ %=Location:\ Line\ %l/%L\ \ Col:\ %c\ (%p%%)
 
-" Enable modelines only on secure vim
-if (v:version == 603 && has("patch045")) || (v:version > 603)
-   set modeline
-else
-   set nomodeline
-endif
 
 " Shamelessly stolen from Ciaran McCreesh <ciaranm@ciaranm.org>
 fun! LoadColorScheme(schemes)
@@ -192,10 +187,8 @@ autocmd FileType c,cpp :call <SID>cabbrev()
 " make tab reindent in normal mode
 autocmd FileType c,cpp,cs,java nmap <Tab> =0<CR>
 
-" tab indents selection
+" tab in visual mode is for indentation
 vmap <silent> <Tab> >gv
-
-" shift-tab unindents
 vmap <silent> <S-Tab> <gv
 
 " Page using space
@@ -207,15 +200,8 @@ noremap  <S-Up> gk
 inoremap <S-Down> <C-O>gj
 noremap  <S-Down> gj
 
-" Y should yank to EOL
-map Y y$
-
 " vK is stupid
 vmap K k
-
-" :W and :Q are annoying
-cmap W w
-cmap Q q
 
 if has("gui")
    source $VIMRUNTIME/ftplugin/man.vim
@@ -250,6 +236,3 @@ autocmd BufReadPost *
    \  exe "normal g'\"" |
    \ endif
 
-" securemodelines.vim
-let g:secure_modelines_verbose = 1
-let g:secure_modelines_leave_modeline = 1
