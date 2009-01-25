@@ -1,0 +1,32 @@
+
+# alt{,+shift}+tab
+Mode1 Tab :NextWindow
+Mode1 Shift Tab :PrevWindow
+
+# ctrl+alt+{left,right}
+Control Mod1 Left :LeftWorkspace
+Control Mod1 Right :RightWorkspace
+
+# ctrl+alt+shift+{left,right}
+Control Mod1 Shift Left :TakeToPrevWorkspace
+Control Mod1 Shift Right :TakeToNextWorkspace
+
+# windows+t
+Mod4 t :Exec gnome-terminal --geometry 140x50
+
+# alt+{f2,f4,f5,f9,f10,f11}
+Mod1 F2 :Exec fbrun
+Mod1 F4 :Close
+Mod1 F5 :Restore
+Mod1 F9 :Minimize
+Mod1 F10 :Maximize
+Mod1 F11 :Fullscreen
+
+# alt+space
+Mod1 space :WindowMenu
+
+# volume keys
+176 :Exec amixer sset Master,0 1+
+174 :Exec amixer sset Master,0 1-
+160 :Exec amixer sset Master,0 toggle
+
