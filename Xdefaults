@@ -26,3 +26,4 @@ UXTerm*termName: xterm-256color
 UXTerm*eightBitInput: false
 UXTerm*eightBitOutput: true
 UXTerm*eightBitControl: false
+

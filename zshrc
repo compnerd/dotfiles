@@ -2,7 +2,7 @@
 # Saleem Abdulrasool <compnerd@compnerd.org>
 # vim: set nowrap:
 
-autoload -Uz compinit; compinit -d "${HOME}/.zsh/.zcompdump"
+autoload -Uz compinit ; compinit -d "${HOME}/.zsh/.zcompdump"
 
 autoload -Uz age
 autoload -Uz zmv
