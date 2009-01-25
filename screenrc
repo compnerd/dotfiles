@@ -5,7 +5,7 @@ encoding utf-8
 # Detach on hangup
 autodetach on
 
-# Dont disaply the startup message
+# Dont display the startup message
 startup_message off
 
 # Remove buffers from other apps
