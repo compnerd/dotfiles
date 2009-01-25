@@ -3,24 +3,24 @@
 
 function unkey-host()
 {
-   if [[ ${#} -ne 1 ]] && return 1
-   sed -i -e "/$1/d" $HOME/.ssh/known_hosts
+   [[ ${#} -ne 1 ]] && return 1
+   sed -i -e "/${1}/d" "${HOME}/.ssh/known_hosts"
 }
 
 function mkcd()
 {
-   if [[ -d "$1" ]] ; then
-      cd "$1"
+   if [[ -d "${1}" ]] ; then
+      cd "${1}"
       return
    fi
 
-   mkdir -p "$1" && cd "$1"
+   mkdir -p "${1}" && cd "${1}"
 }
 
 function extract()
 {
-   if [[ ! -f "$1" ]] ; then
-      echo "The file ("$1") does not exist!"
+   if [[ ! -f "${1}" ]] ; then
+      echo "The file ("${1}") does not exist!"
       return
    fi
 
