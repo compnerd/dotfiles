@@ -14,5 +14,6 @@
 [format]
    numbered = auto
 
-[diff]
-   renames = copy
+[merge]
+   tool = vimdiff
+
