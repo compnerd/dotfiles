@@ -61,7 +61,14 @@ if (v:version >= 700)
    imap <silent> <F10> <C-O>:silent set spell!<CR>
 endif
 
-" Always display a pretty statusline
+" ---- Cursor ----
+set guicursor=a:hor1
+if &term =~ "xterm" || &term =~ "xterm-256color"
+   let &t_EI = "\033]12;cyan\007"
+   let &t_SI = "\033]12;red\007"
+endif
+
+" ---- Status ----
 set title
 set laststatus=2
 set shortmess=atI
@@ -89,7 +96,7 @@ set background=dark
 
 " Select colorschemes based on how we are running
 if has("gui_running")
-   call LoadColorScheme("molokai:moria:inkpot:zenburn:vividchalk:darkspectrum")
+   call LoadColorScheme("desertEx:molokai:moria:inkpot:zenburn:vividchalk:darkspectrum")
 elseif &t_Co == 88 || &t_Co == 256
    call LoadColorScheme("inkpot:vividchalk")
 else
@@ -111,9 +118,6 @@ else
       set list listchars=tab:>-,trail:.,extends:>
    endif
 endif
-
-" Dont copy the listchars when copying
-set mouse=nvi
 
 " Get rid of the annoying UI
 if has("gui")
@@ -227,9 +231,6 @@ imap <silent> <F12> <C-O>:silent set number!<CR>
 
 " Don't force column 0 for #
 inoremap # X<BS>#
-
-" Add a simple way to add a copyright notice
-inoremap <leader>c Copyright <c-r>=strftime('%Y')<CR> Saleem Abdulrasool <compnerd@compnerd.org><CR>
 
 autocmd BufReadPost *
    \ if line("'\"") > 0 && line("'\"") <= line("$") |
