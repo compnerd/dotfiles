@@ -82,6 +82,7 @@ alias mv='nocorrect mv'
 alias rm='nocorrect rm -ir'
 alias mkdir='nocorrect mkdir'
 
+alias :e='vim'
 alias :q='exit'
 alias :wq='exit'
 
