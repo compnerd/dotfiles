@@ -70,3 +70,13 @@ _ps_retval_colour_f()
 export PS1='\[\033[01;32m\]\u@\h \[\033[01;34m\]\w \[$(_ps_retval_colour_f $?)\]$ \[\033[00;00m\]'
 # }}}
 
+# {{{ per host configuration
+if [[ -d "${HOME}/.bash" ]] ; then
+   for file in "${HOME}/.bash"/* ; do
+      if [[ -x "${file}" ]] ; then
+         source "${file}"
+      fi
+   done
+fi
+# }}}
+
