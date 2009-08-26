@@ -1,0 +1,7 @@
+HashKnownHosts no
+
+Host *
+   ControlPath ~/.ssh/master-%r:%h
+   #GSSAPIAuthentication yes
+   #GSSAPIDelegateCredentials yes
+
