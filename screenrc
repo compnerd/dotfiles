@@ -1,6 +1,13 @@
+# .screenrc
+# Saleem Abdulrasool <compnerd@compnerd.org>
+# vim: set ts=3 sts=3 sw=3 et :
+
 # Enable UTF-8 support
-defutf8 on
+utf8 on
 encoding utf-8
+
+# Blocked programs get no input
+nonblock on
 
 # Detach on hangup
 autodetach on
@@ -24,11 +31,15 @@ caption always "%{= B}[ %{G}$USER@%H%{-} ][%= %{w}%?%-Lw%{-}%{r}(%{W}%n*%f %t%{-
 ## 256 Color Support
 ##
 
-# Allow bold colors
-attrcolor b ".I"
+# Use bright colors for bold text (default for most terminals)
+#attrcolor b ".I"
+
 # Tell screen how to set colors. AB = background, AF = foreground
 termcapinfo xterm 'Co#256:AB=\E[48;6;%dm:AF=\E[38;5;%dm'
+
 # Erase background color with current background color
 defbce "on"
+
 # Set Terminal to xterm-256color
 term "xterm-256color"
+
