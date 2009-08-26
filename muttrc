@@ -4,6 +4,7 @@
 
 ### Mail checking settings
 set   nomove               # Do not move messages
+set   nomark_old           # Do not mark unread messages as old
 set   check_new            # check for new messages
 set   mail_check=60        # autocheck timeout (seconds)
 set   beep_new             # beep on new messages
@@ -49,6 +50,7 @@ set   indent_string="> "   # quote character
 set   include              # include message in quote
 set   attach_split         # Do not concatenate attachments
 set   record="+Sent"       # sent mail is saved here
+set   metoo                # keep my address when replying
 
 ### String formatting
 set attribution='On %{%a, %d %b %Y}, %n wrote: \n'
@@ -195,3 +197,4 @@ macro pager \\ "<enter-command>toggle sidebar_visible<enter>"
 
 ### Source final settings
 source ~/.mutt/settings
+
