@@ -39,6 +39,7 @@ setopt MAGIC_EQUAL_SUBST      # special expansion after all =
 setopt INTERACTIVE_COMMENTS   # allow comments in interactive shells
 
 unsetopt BEEP                 # stop beeping!
+unsetopt HIST_BEEP            # really, stop beeping!
 unsetopt LIST_BEEP            # seriously, stop beeping!
 
 unsetopt NO_MATCH             # dont error on no glob matches
