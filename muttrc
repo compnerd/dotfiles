@@ -151,7 +151,7 @@ set signature="~/.mutt/.signature"
 
 ### Mailboxes
 set mask="!^\\.[^.]"
-mailboxes `echo $(find $HOME/.maildir -maxdepth 1 -type d -not \( -name 'new' -or -name 'cur' -or -name 'tmp' \) -exec echo \"{}\" \;)`
+mailboxes `echo $(find $HOME/.maildir -maxdepth 1 -type d -not \( -name 'new' -or -name 'cur' -or -name 'tmp' \) -exec echo \"{}\" \; 2> /dev/null)`
 #subscribe 
 
 ### Server Settings
@@ -178,22 +178,22 @@ set pgp_list_pubring_command="gpg --no-verbose --batch --with-colons --list-keys
 set pgp_list_secring_command="gpg --no-verbose --batch --with-colons --list-secret-keys %r"
 
 ### Sidebar
-set sidebar_width=30
-set sidebar_visible=no
-set sidebar_delim=' | '
-
-color sidebar_new    brightcyan  default
-
-bind  index    o           sidebar-open
-bind  index    <tab>       sidebar-next
-bind  index    <backtab>   sidebar-prev
-
-bind  pager    o           sidebar-open
-bind  pager    <tab>       sidebar-next
-bind  pager    <backtab>   sidebar-prev
-
-macro index \\ "<enter-command>toggle sidebar_visible<enter>"
-macro pager \\ "<enter-command>toggle sidebar_visible<enter>"
+##set sidebar_width=30
+##set sidebar_visible=no
+##set sidebar_delim=' | '
+##
+##color sidebar_new    brightcyan  default
+##
+##bind  index    o           sidebar-open
+##bind  index    <tab>       sidebar-next
+##bind  index    <backtab>   sidebar-prev
+##
+##bind  pager    o           sidebar-open
+##bind  pager    <tab>       sidebar-next
+##bind  pager    <backtab>   sidebar-prev
+##
+##macro index \\ "<enter-command>toggle sidebar_visible<enter>"
+##macro pager \\ "<enter-command>toggle sidebar_visible<enter>"
 
 ### Source final settings
 source ~/.mutt/settings
