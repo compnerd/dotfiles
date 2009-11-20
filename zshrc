@@ -67,11 +67,13 @@ case "${TERM}" in
    ;;
 esac
 
+# environment based options
+export GREP_OPTIONS="--directories=skip --color=auto"
+
 # aliases
 alias cd..='cd ..'
 
 alias ls='ls -h --color=auto'
-alias grep='grep -d skip --color=auto'
 
 alias df='df -h'
 alias du='du -h'
