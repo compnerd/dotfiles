@@ -1,7 +1,7 @@
 # .gdbinit
 # Copyright 2009 Saleem Abdulrasool <compnerd@compnerd.org>
 
-# prompt
+# prompt (the extra space is intentional)
 set prompt \001\033[01;32mgdb\001\033[01;34m\002 $\001\033[00;00m\002 
 
 # history
