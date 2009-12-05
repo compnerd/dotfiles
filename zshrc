@@ -7,13 +7,28 @@ autoload -Uz compinit ; compinit -d "${HOME}/.zsh/.zcompdump"
 autoload -Uz age
 autoload -Uz zmv
 
+autoload -Uz edit-command-line
+zle -N edit-command-line
+
 if [[ ${ZSH_VERSION//.} -gt 420 ]] ; then
    autoload -Uz url-quote-magic
    zle -N self-insert url-quote-magic
 fi
 
-autoload -Uz edit-command-line
-zle -N edit-command-line
+if [[ ${ZSH_VERSION//.} -gt 410 ]] ; then
+   autoload -Uz vcs_info
+   autoload -Uz colors
+
+   zstyle ':vcs_info:*:prompt:*' stagedstr '^'
+   zstyle ':vcs_info:*:prompt:*' unstagedstr '+'
+   zstyle ':vcs_info:*:prompt:*' check-for-changes true
+   zstyle ':vcs_info:*:prompt:*' formats $'%{\e[01;36m%}«%{\e[01;32m%}%s%{\e[00;32m%}:%{\e[01;34m%}%r%{\e[00;32m%}/%{\e[01;35m%}%b%{\e[01;33m%}%{\e[01;36m%}[%{\e[01;33m%}%u%c%{\e[01;36m%}]%{\e[01;36m%}»%{\e[00;00m%} ' '%S'
+   zstyle ':vcs_info:*:prompt:*' actionformats $'%{\e[01;36m%}«%{\e[01;32m%}%s%{\e[01;36m%}(%{\e[01;35m%}%a%{\e[01;36m%})%{\e[00;32m%}:%{\e[01;34m%}%r%{\e[00;32m%}/%{\e[01;35m%}%b%{\e[01;33m%}%{\e[01;36m%}[%{\e[01;33m%}%u%c%{\e[01;36m%}]%{\e[01;36m%}»%{\e[00;00m%} ' '%S'
+   zstyle ':vcs_info:*:prompt:*' nvcsformats "" $'%1~'
+else
+   # define the empty function to allow a simpler preexec function
+   vcs_info() { ; }
+fi
 
 # disable core dumps
 limit coredumpsize 0
@@ -22,27 +37,29 @@ limit coredumpsize 0
 trap clear 0
 
 # shell options
+setopt ALWAYS_TO_END          # goto end of word on completion
 setopt AUTO_CD                # directoy command does cd
-setopt CORRECT                # correct spelling of commands
 setopt AUTO_PUSHD             # cd uses directory stack
+setopt BASH_AUTO_LIST         # list completions on second tab
+setopt CDABLE_VARS            # cd var works if $var is a directory
 setopt CHASE_DOTS             # resolve .. in cd
 setopt CHASE_LINKS            # resolve symbolic links in cd
-setopt CDABLE_VARS            # cd var works if $var is a directory
-setopt PUSHD_SILENT           # make pushd quiet
-setopt ALWAYS_TO_END          # goto end of word on completion
-setopt EXTENDED_GLOB          # use zsh globbing extensions
-setopt SH_WORD_SPLIT          # split non-array variables
-setopt BASH_AUTO_LIST         # list completions on second tab
-setopt LIST_ROWS_FIRST        # list completions across
 setopt COMPLETE_IN_WORD       # completion works inside words
-setopt MAGIC_EQUAL_SUBST      # special expansion after all =
+setopt CORRECT                # correct spelling of commands
+setopt EXTENDED_GLOB          # use zsh globbing extensions
 setopt INTERACTIVE_COMMENTS   # allow comments in interactive shells
+setopt LIST_ROWS_FIRST        # list completions across
+setopt MAGIC_EQUAL_SUBST      # special expansion after all =
+setopt PUSHD_SILENT           # make pushd quiet
+setopt PROMPT_SUBST           # allow substitutions in the prompt
+setopt SH_WORD_SPLIT          # split non-array variables
 
+unsetopt NO_MATCH             # dont error on no glob matches
+
+# (disable) beeping
 unsetopt BEEP                 # stop beeping!
 unsetopt HIST_BEEP            # really, stop beeping!
 unsetopt LIST_BEEP            # seriously, stop beeping!
-
-unsetopt NO_MATCH             # dont error on no glob matches
 
 # history
 export HISTSIZE=1000
@@ -112,18 +129,21 @@ bindkey -M viins '' history-incremental-search-backward
 bindkey -M viins '' history-incremental-search-forward
 
 # prompt
+precmd() { vcs_info 'prompt' }
+
 if [[ -z ${SSH_TTY} ]] ; then
-   PS1=$'%{\e[01;32m%}%n@%m %{\e[01;34m%}%1~ %(?..%{\e[01;31m%})%(!.#.$) %{\e[00;00m%}'
+   PROMPT=$'%{\e[01;33m%}%h ${vcs_info_msg_0_}%{\e[01;32m%}%n@%m %{\e[01;34m%}${${vcs_info_msg_1_/^.$/}:-%1~} %(?..%{\e[01;31m%})%(!.#.$) %{\e[00;00m%}'
 else
-   PS1=$'%{\e[01;36m%}%n %(?..%{\e[01;31m%})%(!.#.$) %{\e[00;00m%}'
+   PROMPT=$'%{\e[01;36m%}%n %(?..%{\e[01;31m%})%(!.#.$) %{\e[00;00m%}'
    RPROMPT=$'%{\e[01;33m%}%m %{\e[01;32m%}%1~%{\e[00;00m%}'
 fi
 
 # terminal titles
-if [[ "${TERM}" != "linux" ]] ; then
-   precmd() { print -Pn "\e]0;%n@%m: ${(q)$(print -rPn "%40>...>${(V)1:-${SHELL}}" | tr '\n' ';')}\007" }
-   preexec() { print -Pn "\e]0;%n@%m: ${(q)$(print -rPn "%40>...>${(V)1:-${SHELL}}" | tr '\n' ';')}\007" }
-fi
+#
+#if [[ "${TERM}" != "linux" ]] ; then
+#   precmd() { print -Pn "\e]0;%n@%m: ${(q)$(print -rPn "%40>...>${(V)1:-${SHELL}}" | tr '\n' ';')}\007" }
+#   preexec() { print -Pn "\e]0;%n@%m: ${(q)$(print -rPn "%40>...>${(V)1:-${SHELL}}" | tr '\n' ';')}\007" }
+#fi
 
 # completion menu
 zstyle ':completion:*' menu select=1
