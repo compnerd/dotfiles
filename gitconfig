@@ -17,3 +17,9 @@
 [merge]
    tool = vimdiff
 
+[diff]
+   renames = copy
+
+[help]
+   autocorrect = true
+
