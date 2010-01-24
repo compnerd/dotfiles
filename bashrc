@@ -2,6 +2,12 @@
 # Saleem Abdulrasool <compnerd@compnerd.org>
 # vim: set fmr={{{,}}} fdm=marker :
 
+# {{{ ensure interactive mode
+if [[ $- != *i* ]] ; then
+   return
+fi
+# }}}
+
 # {{{ shell options
 shopt -s extglob
 shopt -s cmdhist
@@ -10,7 +16,7 @@ shopt -s histappend
 
 # {{{ locale
 eval unset ${!LC_*} LANG
-export LANG=en_US.UTF-8
+export LANG=en_US.utf8
 export LC_COLATE=C
 # }}}
 
@@ -19,7 +25,7 @@ ulimit -c 0
 # }}}
 
 # {{{ colours
-eval $(dircolors -b $([ -f /etc/DIR_COLORS ] && echo "/etc/DIR_COLORS"))
+eval $(dircolors -b $([[ -f /etc/DIR_COLORS ]] && echo "/etc/DIR_COLORS"))
 # }}}
 
 # {{{ terminal
