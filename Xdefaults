@@ -18,9 +18,14 @@ XTerm*eightBitInput: false
 XTerm*eightBitOutput: true
 XTerm*eightBitControl: false
 
+XTerm*toolBar: false
+
 /* UXTerm */
 UXTerm*faceSize: 8
 UXTerm*faceName: Consolas
+
+UXTerm*faceSize: 10
+UXTerm*faceName: Terminus
 
 UXTerm*background: black
 UXTerm*foreground: white
@@ -30,4 +35,6 @@ UXTerm*termName: xterm-256color
 UXTerm*eightBitInput: false
 UXTerm*eightBitOutput: true
 UXTerm*eightBitControl: false
+
+UXTerm*toolBar: false
 
