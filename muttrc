@@ -1,200 +1,105 @@
 # muttrc
 # Saleem Abdulrasool <compnerd@compnerd.org>
-# vim: set nowrap:
+# vim: set ts=4 sw=4 fmr={{{,}}} fdm=marker nowrap :
 
-### Mail checking settings
-set   nomove               # Do not move messages
-set   nomark_old           # Do not mark unread messages as old
-set   check_new            # check for new messages
-set   mail_check=60        # autocheck timeout (seconds)
-set   beep_new             # beep on new messages
-set   delete=yes           # delete marked messages on sync
+# {{{ mail checking settings
+set nomove                              # do not move messages to mbox
+set nomark_old                          # do not mark unread messages as old
+set nomarkers                           # do not mark line wrappings
+set check_new                           # check for new messages
+set mail_check = 60                     # autocheck timeout (seconds)
+set delete                              # delete marked messages on sync
+# }}}
 
-### Message viewing
-alternative_order text/plain text/enriched text/html
-auto_view text/html application/x-pgp-message
+# {{{ ui settings
+set status_on_top                       # status bar on top
 
-### Usability settings
-set   gecos_mask=".*"      # Use the enitre field
-set   reverse_alias        # Lookup aliases
-set   pager_stop           # prevent next message jump
-set   suspend              # ^Z suspends
-#set   arrow_cursor         # "->" as cursor (faster on slow networks)
+# {{{ colours
+color status            brightblue      default
+color indicator         brightblue      default
+color tree              brightblue      default
+color error             brightred       default
+color normal            default         default
 
-### UI settings
-set   status_on_top        # status bar on top
-set   strict_threads       # thread by In-Reply-To or Subject
-set   sort=threads         # sort the messages
-set   sort_aux=date        # sort the threads
+color index             brightgreen     default ~N      # new
+color index             brightyellow    default ~O      # old
+color index             brightcyan      default ~d<1d   # messages < 1 day old
+color index             brightgreen     default ~P      # personal
+color index             brightmagenta   default ~F      # flagged
+color index             brightblue      default ~T      # tagged
+color index             brightred       default ~D      # deleted
 
-### Header settings
+color hdrdefault        brightwhite     default
+color header            brightgreen     default "^From:"
+color header            brightmagenta   default "^Date:"
+color header            brightgreen     default "^(To|CC|BCC):"
+
+color body              brightcyan      default "(http|ftp|news|telnet|finger|https)://[^ >]*"
+color body              brightcyan      default "<URL:[^ ]*>"
+# }}}
+
+# {{{ display strings
+set attribution = "On %{%a, %d %b %Y}, %n wrote:\n"
+set index_format = "%4C | %[%b %d]  %S  %-20.20n  %s"
+set status_format = "  %v    Folder: %f [%m messages, %n new, %u unread]%?%v? Filter %V [%M messages]? %> (%P)  "
+# }}}
+
+# {{{ headers
 ignore *
-unignore From Date Subject To Cc Bcc
+unignore From Date Subject To CC BCC
 
 unhdr_order *
-hdr_order From: Date: To: Cc: Bcc: Subject:
+hdr_order From: Date: To: CC: BCC: Subject:
+# }}}
 
-### Compose settings
-set   use_from=yes         # Use the variable from to set sender
-set   envelope_from=yes    # XXX
-set   markers              # place a marker on wrapped lines
-set   smart_wrap           # wrap at word end
-set   charset=UTF8         # UTF-8 support by default
-set   send_charset=UTF8    # UTF-8 support by default
-set   locale=en_US         # default locale
-set   abort_unmodified=yes # abort empty messages
-set   abort_nosubject=yes  # abort messages without subjects
-set   fast_reply           # no prompts for to and subject in fwd
-set   hidden_host          # hide hostname
-set   indent_string="> "   # quote character
-set   include              # include message in quote
-set   attach_split         # Do not concatenate attachments
-set   record="+Sent"       # sent mail is saved here
-set   metoo                # keep my address when replying
+# {{{ threading
+set strict_threads                      # thread by In-Reply-To or Subject
+set sort = "threads"                    # sort the messages by threads
+set sort_aux = "last-date-received"     # sort the threads by date
+# }}}
+# }}}
 
-### String formatting
-set attribution='On %{%a, %d %b %Y}, %n wrote: \n'
-set index_format="%4C | %[%b %d]  %S  %-20.20n  %s"
-set pager_format="%S Message %C of %m: %s"
-set status_format="  %v    Folder: %f [%m messages, %n new, %u unread]%?V? Filter: %V [%M messages]? %> (%P)  "
-set folder_format="%2C %N %f"
-set compose_format="  %v    New Message %?a? [%a Attachment(s)] ? "
+# {{{ composition settings
+set use_from                            # use from to set sender
+set envelope_from                       # ???
+set smart_wrap                          # wrap at word boundaries
+set send_charset = utf-8                # send using UTF-8
+set abort_nosubject                     # abort messages without a subject
+set fast_reply                          # no pompts for to and subject in fwd
+set hidden_host                         # hide hostname
+set include                             # include message in quotes
+set attach_split                        # do not concatenate attachments
+# }}}
 
-### Colors
-color status      brightblue     default
-color indicator   brightblue     default
-color tree        brightblue     default
-color error       brightred      default
-color normal      default        default
+# {{{ caching
+set header_cache = ~/.mutt/cache/headers
+set message_cachedir = ~/.mutt/cache/bodies
+set certificate_file = ~/.mutt/certificates
+# }}}
 
-color header      brightgreen    default   "^From:"
-color header      brightmagenta  default   "^Date:"
-color header      brightgreen    default   "^(To|Cc|Bcc):"
-color header      brightmagenta  default   "^Subject:"
-color hdrdefault  brightwhite    default
+# {{{ keybindings
+# {{{ index
+bind index gg   first-entry
+bind index G    last-entry
+bind index K    toggle-new
+bind index M    save-message
+bind index N    next-new-then-unread
+bind index \cN  next-unread
+bind index \cP  previous-unread
+bind index s    sort-mailbox
+bind index ' '  next-page
+# }}}
 
-color body        brightcyan     default    "(http|ftp|news|telnet|finger|https)://[^ >]*"
-color body        brightcyan     default    "<URL:[^ ]*>"
+# {{{ pager
+bind pager gg   top
+bind pager G    bottom
+bind pager j    next-line
+bind pager k    previous-line
+bind pager K    mark-as-new
+bind pager N    search-opposite
+bind pager R    group-reply
+# }}}
+# }}}
 
-color quoted      brightgreen    default
-color quoted1     brightred      default
-color quoted2     brightmagenta  default
-color quoted3     brightwhite    default
-color quoted4     brightblue     default
-
-color attachment  brightyellow   default
-color signature   brightred      default
-
-color search      brightblack    white
-
-# Smileys
-color body        brightyellow   default    "[;:]-[)/(|]"
-color body        brightyellow   default    "[;:][)/(|]"
-
-# Bugzilla Color Coding
-color index       brightred      red      "~h 'X-Bugzilla-Severity: blocker'"
-color index       brightmagenta  default  "~h 'X-Bugzilla-Severity: critical'"
-color index       brightred      default  "~h 'X-Bugzilla-Severity: major'"
-color index       brightyellow   default  "~h 'X-Bugzilla-Severity: minor'"
-color index       brightcyan     default  "~h 'X-Bugzilla-Severity: trivial'"
-color index       brightgreen    default  "~h 'X-Bugzilla-Severity: enhancement'"
-
-# PGP Colors
-color body        brightgreen    default "^(gpg: )?Good Signature"
-color body        brightgreen    default "^(gpg: )?encrypted"
-color body        brightred      default "^(gpg: )?Bad Signature"
-color body        brightyellow   default "^(gpg: )?warning"
-color body        brightyellow   default "^(gpg: ).*failed:"
-
-# Mail colors
-color index       brightgreen    default ~N        # New
-color index       brightyellow   default ~O        # Old
-color index       brightcyan     default "~d<1d"   # Todays Messages
-color index       brightgreen    default ~P        # Personal
-color index       brightmagenta  default ~F        # Flagged
-color index       brightblue     default ~T        # Tagged
-color index       brightred      default ~D        # Deleted
-
-### Keybindings
-bind  pager    gg       top
-bind  pager    G        bottom
-bind  pager    j        next-line
-bind  pager    k        previous-line
-bind  pager    K        mark-as-new
-bind  pager    m        next-new-then-unread
-bind  pager    M        previous-new-then-unread
-bind  pager    N        search-opposite
-bind  pager    R        group-reply
-
-bind  index    gg       first-entry
-bind  index    G        last-entry
-bind  index    K        toggle-new
-bind  index    M        save-message
-bind  index    N        next-new-then-unread
-bind  index    \CN      next-unread
-bind  index    \CP      previous-unread
-bind  index    s        sort-mailbox
-bind  index    <space>  next-page
-
-bind  attach   <space>  select-entry
-
-### Macros
-
-### Folder hooks
-folder-hook =Sent 'set simple_search="~t %s | ~s %s"' # Search To rather than From in SENT
-
-### Caching
-set header_cache="~/.mutt/cache/"
-
-### Signature
-set signature="~/.mutt/.signature"
-
-### Mailboxes
-set mask="!^\\.[^.]"
-mailboxes `echo $(find $HOME/.maildir -maxdepth 1 -type d -not \( -name 'new' -or -name 'cur' -or -name 'tmp' \) -exec echo \"{}\" \; 2> /dev/null)`
-#subscribe 
-
-### Server Settings
-set folder=$HOME/.maildir
-#set sendmail="/usr/bin/msmtp"
-
-### GNUPG Configuration
-#set pgp_autosign
-
-set pgp_sign_command="gpg --no-verbose --batch --output - --passphrase-fd 0 --armor --detach-sign --textmode %?a?-u %a? %f"
-set pgp_clearsign_command="gpg --no-verbose --batch --output - --passphrase-fd 0 --armor --textmode --clearsign %?a?-u %a? %f"
-
-set pgp_verify_sig=yes
-set pgp_verify_command="gpg --no-verbose --batch --output --verify %s %f"
-set pgp_verify_key_command="gpg --no-verbose --batch --fingerprint --check-sigs %r"
-
-set pgp_decode_command="gpg %?p?--passphrase-fd 0? --no-verbose --batch --output - %f"
-set pgp_decrypt_command="gpg --passphrase-fd 0? --no-verbose --batch --ouput - %f"
-
-set pgp_import_command="gpg --no-verbose --import -v %f"
-set pgp_export_command="gpg --no-verbose --export --armor %r"
-
-set pgp_list_pubring_command="gpg --no-verbose --batch --with-colons --list-keys %r"
-set pgp_list_secring_command="gpg --no-verbose --batch --with-colons --list-secret-keys %r"
-
-### Sidebar
-##set sidebar_width=30
-##set sidebar_visible=no
-##set sidebar_delim=' | '
-##
-##color sidebar_new    brightcyan  default
-##
-##bind  index    o           sidebar-open
-##bind  index    <tab>       sidebar-next
-##bind  index    <backtab>   sidebar-prev
-##
-##bind  pager    o           sidebar-open
-##bind  pager    <tab>       sidebar-next
-##bind  pager    <backtab>   sidebar-prev
-##
-##macro index \\ "<enter-command>toggle sidebar_visible<enter>"
-##macro pager \\ "<enter-command>toggle sidebar_visible<enter>"
-
-### Source final settings
-source ~/.mutt/settings
+source .mutt/settings
 
