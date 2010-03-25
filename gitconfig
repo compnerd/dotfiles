@@ -1,18 +1,9 @@
 [color]
-   diff = auto
-   branch = auto
-   status = auto
-   interactive = auto
+   ui = auto
 
 [alias]
-   st = status
-   ci = commit
-   co = checkout
-   staged = diff --cached
    amend = commit --amend
-
-[format]
-   numbered = auto
+   staged = diff --cached
 
 [merge]
    tool = vimdiff
@@ -22,4 +13,10 @@
 
 [help]
    autocorrect = 1
+
+[url "git@github.com:"]
+   insteadof = github:
+
+[url "git://anongit.freedesktop.org/"]
+   insteadof = freedesktop:
 
