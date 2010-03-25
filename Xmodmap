@@ -1,5 +1,4 @@
-! Make caps into escape
+! make caps into escape
 remove Lock = Caps_Lock
 keysym Caps_Lock = Escape
 
-add mod4 = Super_L
