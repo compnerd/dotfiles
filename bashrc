@@ -53,6 +53,12 @@ fi
 set -o vi
 
 bind Space:magic-space
+bind C-p:reverse-search-history
+
+# remap Caps Lock (0x3A) to Escape
+if [[ ${TERM} == linux ]] ; then
+   ( echo -e $(dumpkeys | grep -i keymaps ; echo \\nkeycode 58 = Escape) | loadkeys - ) > /dev/null 2>&1
+fi
 # }}}
 
 # {{{ prompt
