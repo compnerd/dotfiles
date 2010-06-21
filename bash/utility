@@ -4,6 +4,11 @@
 
 unkey-host()
 {
-   sed -i -e "/${1##*@}/d" "${HOME}/.ssh/known_hosts"
+   ssh-keygen -R "${1##*@}"
+}
+
+mkcd()
+{
+   mkdir -p "${1}" && cd "${1}"
 }
 
