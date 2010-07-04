@@ -110,7 +110,7 @@ endif
 " ---- Status Line ----
 set laststatus=2
 set shortmess=atI
-set statusline=Editing:\ %r%t%m\ %=Location:\ Line\ %l/%L\ \ Col:\ %c\ (%p%%)
+set statusline=Editing:\ %r%t%m\ %=Location:\ Line\ %l/%L\ \ Col:\ %v\ (%p%%)
 
 " ---- Spell Checking ----
 if (v:version >= 700)
@@ -118,6 +118,7 @@ if (v:version >= 700)
 endif
 
 " ---- Code Indexing (ctags/cscope) ---
+set showfulltag            " show full tags when doing completion
 
 " search for tags in parent directory, recursively
 set tags=tags;/
