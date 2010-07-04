@@ -1,0 +1,6 @@
+#!/bin/sh
+# vim: set ft=sh ts=3 sts=3 sw=3 :
+# exherbo environment
+
+export CAVE_RESOLVE_OPTIONS="--target-slots installed-or-best --slots installed-or-best --show-descriptions none"
+
