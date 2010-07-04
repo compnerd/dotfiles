@@ -1,0 +1,7 @@
+#!/bin/sh
+# vim: set ft=sh ts=3 sts=3 sw=3 :
+# development environment
+
+export PYTHONSTARTUP="${HOME}/.pythonrc"
+export PATH=${PATH}:${HOME}/.git
+
