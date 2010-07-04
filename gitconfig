@@ -4,6 +4,8 @@
 [alias]
    amend = commit --amend
    staged = diff --cached
+   changes = diff --name-status -r
+   diffstat = diff --stat -r
 
 [merge]
    tool = vimdiff
