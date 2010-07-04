@@ -14,7 +14,7 @@ XTerm*eightBitInput: false
 XTerm*eightBitOutput: true
 XTerm*eightBitControl: false
 
-/* UXTERM */
+/* UXTerm */
 UXTerm*faceSize: 10
 UXTerm*faceName: Terminus
 
