@@ -117,11 +117,24 @@ if (v:version >= 700)
    set spelllang=en_us  " US English spelling please
 endif
 
-" ---- Code Indexing (ctags/cscope) ---
-set showfulltag            " show full tags when doing completion
+" ---- Code Indexing (ctags/cscope) ----
+set showfulltag         " show full tags when doing completion
 
 " search for tags in parent directory, recursively
 set tags=tags;/
+
+if has("cscope")
+   set csto=1           " check ctags before cscope
+
+   if filereadable("cscope.out")
+      cs add cscope.out
+   endif
+
+   " c -> calls ; d -> definition ; r -> references
+   nmap <leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+   nmap <leader>d :cs find g <C-R>=expand("<cword>")<CR><CR>
+   nmap <leader>r :cs find s <C-R>=expand("<cword>")<CR><CR>
+endif
 
 " ---- Restore Cursor Location ----
 autocmd BufReadPost *
@@ -165,4 +178,7 @@ fun! CAbbrev()
 endfun
 
 autocmd FileType c,cpp :call CAbbrev()
+
+digraph .c 0169               " copyright (©)
+digraph ., 8230               " elipsis (…)
 
