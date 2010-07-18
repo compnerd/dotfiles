@@ -3,6 +3,10 @@ Xft*dpi: 72
 Xft*antialias: true
 
 /* XTerm */
+XTerm*faceSize: 8
+XTerm*faceName: Consolas
+
+XTerm*class: UXTerm
 XTerm*utf8: 1
 
 XTerm*background: black
@@ -15,8 +19,8 @@ XTerm*eightBitOutput: true
 XTerm*eightBitControl: false
 
 /* UXTerm */
-UXTerm*faceSize: 10
-UXTerm*faceName: Terminus
+UXTerm*faceSize: 8
+UXTerm*faceName: Consolas
 
 UXTerm*background: black
 UXTerm*foreground: white
