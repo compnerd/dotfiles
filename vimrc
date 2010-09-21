@@ -179,6 +179,5 @@ endfun
 
 autocmd FileType c,cpp :call CAbbrev()
 
-digraph .c 0169               " copyright (©)
 digraph ., 8230               " elipsis (…)
 
