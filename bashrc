@@ -36,14 +36,17 @@ case "${TERM}" in
 esac
 # }}}
 
+# {{{ GNU environment options
+export GREP_OPTIONS="--directories=skip --color=auto"
+# }}}
+
 # {{{ alias
 alias cd..='cd ..'
 
-alias ls='ls -h --color=auto'
-alias grep='grep -d skip --color=auto'
+alias ls='ls --human-readable --color=auto'
 
-alias df='df -h'
-alias du='du -h'
+alias df='df --human-readable'
+alias du='du --human-readable'
 
 alias ping='ping -c4'
 
