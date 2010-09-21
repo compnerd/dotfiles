@@ -1,42 +1,11 @@
 # .zshrc
 # Saleem Abdulrasool <compnerd@compnerd.org>
-# vim: set nowrap:
+# vim: set fmr={{{,}}} fdm=marker nowrap :
 
-autoload -Uz compinit ; compinit -d "${HOME}/.zsh/.zcompdump"
+# {{{ interactive mode configuration only
+# }}}
 
-autoload -Uz age
-autoload -Uz zmv
-
-autoload -Uz edit-command-line
-zle -N edit-command-line
-
-if [[ ${ZSH_VERSION//.} -gt 420 ]] ; then
-   autoload -Uz url-quote-magic
-   zle -N self-insert url-quote-magic
-fi
-
-if [[ ${ZSH_VERSION//.} -gt 410 ]] ; then
-   autoload -Uz vcs_info
-   autoload -Uz colors
-
-   zstyle ':vcs_info:*:prompt:*' stagedstr '^'
-   zstyle ':vcs_info:*:prompt:*' unstagedstr '+'
-   zstyle ':vcs_info:*:prompt:*' check-for-changes true
-   zstyle ':vcs_info:*:prompt:*' formats $'%{\e[01;36m%}«%{\e[01;32m%}%s%{\e[00;32m%}:%{\e[01;34m%}%r%{\e[00;32m%}/%{\e[01;35m%}%b%{\e[01;33m%}%{\e[01;36m%}[%{\e[01;33m%}%u%c%{\e[01;36m%}]%{\e[01;36m%}»%{\e[00;00m%} ' '%S'
-   zstyle ':vcs_info:*:prompt:*' actionformats $'%{\e[01;36m%}«%{\e[01;32m%}%s%{\e[01;36m%}(%{\e[01;35m%}%a%{\e[01;36m%})%{\e[00;32m%}:%{\e[01;34m%}%r%{\e[00;32m%}/%{\e[01;35m%}%b%{\e[01;33m%}%{\e[01;36m%}[%{\e[01;33m%}%u%c%{\e[01;36m%}]%{\e[01;36m%}»%{\e[00;00m%} ' '%S'
-   zstyle ':vcs_info:*:prompt:*' nvcsformats "" $'%1~'
-else
-   # define the empty function to allow a simpler preexec function
-   vcs_info() { ; }
-fi
-
-# disable core dumps
-limit coredumpsize 0
-
-# clear on exit
-trap clear 0
-
-# shell options
+# {{{ shell options
 setopt ALWAYS_TO_END          # goto end of word on completion
 setopt AUTO_CD                # directoy command does cd
 setopt AUTO_PUSHD             # cd uses directory stack
@@ -55,67 +24,64 @@ setopt PROMPT_SUBST           # allow substitutions in the prompt
 setopt SH_WORD_SPLIT          # split non-array variables
 
 unsetopt NO_MATCH             # dont error on no glob matches
+# }}}
 
-# (disable) beeping
-unsetopt BEEP                 # stop beeping!
-unsetopt HIST_BEEP            # really, stop beeping!
-unsetopt LIST_BEEP            # seriously, stop beeping!
+# {{{ extensions
+if [[ ${ZSH_VERSION//.} -gt 420 ]] ; then
+   autoload -Uz url-quote-magic
+   zle -N self-insert url-quote-magic
+fi
+# }}}
 
-# history
-export HISTSIZE=1000
-export SAVEHIST=1000
-export HISTFILE="${HOME}/.zsh/.history"
+# {{{ locale
+# }}}
 
-setopt SHARE_HISTORY
-setopt HIST_IGNORE_SPACE
-setopt HIST_REDUCE_BLANKS
-setopt INC_APPEND_HISTORY
-setopt HIST_IGNORE_ALL_DUPS
+# {{{ core
+ulimit -c 0
+# }}}
 
-unsetopt HIST_BEEP
-unsetopt EXTENDED_HISTORY
+# {{{ colours
+eval $(dircolors -b $([[ -f /etc/DIR_COLORS ]] && echo "/etc/DIR_COLORS"))
+# }}}
 
-# colors
-eval $(dircolors -b $([ -f /etc/DIR_COLORS ] && echo "/etc/DIR_COLORS"))
-
+# {{{ terminal
 case "${TERM}" in
    xterm*)
       ( infocmp xterm-256color &> /dev/null ) && export TERM=xterm-256color
    ;;
 esac
+# }}}
 
-# environment based options
+# {{{ GNU environment options
 export GREP_OPTIONS="--directories=skip --color=auto"
+# }}}
 
-# aliases
+# {{{ aliases
 alias cd..='cd ..'
 
-alias ls='ls -h --color=auto'
+alias ls='ls --human-readable --color=auto'
 
-alias df='df -h'
-alias du='du -h'
+alias df='df --human-readable'
+alias du='du --human-readable'
 
 alias ping='ping -c4'
 
-alias cp='nocorrect cp'
-alias mv='nocorrect mv'
-alias rm='nocorrect rm -ir'
-alias mkdir='nocorrect mkdir'
-
-alias :e='vim'
-alias :q='exit'
-alias :wq='exit'
-
 alias info='info --vi-keys'
-
-( type -p time &> /dev/null ) && alias time='command time'
 
 if type -p hilite &> /dev/null ; then
    alias make='hilite make'
    alias scons='hilite scons'
 fi
 
-# keybindings
+( type -p time &> /dev/null ) && alias time='command time'
+
+alias cp='nocorrect cp'
+alias mv='nocorrect mv'
+alias rm='nocorrect rm -ir'
+alias mkdir='nocorrect mkdir'
+# }}}
+
+# {{{ keybindings
 bindkey -v
 
 bindkey ' ' magic-space
@@ -128,7 +94,28 @@ bindkey -M vicmd 'ga' what-cursor-position
 bindkey -M viins '' history-incremental-search-backward
 bindkey -M viins '' history-incremental-search-forward
 
-# prompt
+# remap Caps Lock (0x3A) to Escape
+if [[ ${TERM} == linux ]] ; then
+   ( echo -e $(dumpkeys | grep -i keymaps ; echo \\nkeycode 58 = Escape) | loadkeys - ) > /dev/null 2>&1
+fi
+# }}}
+
+# {{{ prompt
+if [[ ${ZSH_VERSION//.} -gt 410 ]] ; then
+   autoload -Uz vcs_info
+   autoload -Uz colors
+
+   zstyle ':vcs_info:*:prompt:*' stagedstr '^'
+   zstyle ':vcs_info:*:prompt:*' unstagedstr '+'
+   zstyle ':vcs_info:*:prompt:*' check-for-changes true
+   zstyle ':vcs_info:*:prompt:*' formats $'%{\e[01;36m%}«%{\e[01;32m%}%s%{\e[00;32m%}:%{\e[01;34m%}%r%{\e[00;32m%}/%{\e[01;35m%}%b%{\e[01;33m%}%{\e[01;36m%}[%{\e[01;33m%}%u%c%{\e[01;36m%}]%{\e[01;36m%}»%{\e[00;00m%} ' '%S'
+   zstyle ':vcs_info:*:prompt:*' actionformats $'%{\e[01;36m%}«%{\e[01;32m%}%s%{\e[01;36m%}(%{\e[01;35m%}%a%{\e[01;36m%})%{\e[00;32m%}:%{\e[01;34m%}%r%{\e[00;32m%}/%{\e[01;35m%}%b%{\e[01;33m%}%{\e[01;36m%}[%{\e[01;33m%}%u%c%{\e[01;36m%}]%{\e[01;36m%}»%{\e[00;00m%} ' '%S'
+   zstyle ':vcs_info:*:prompt:*' nvcsformats "" $'%1~'
+else
+   # define the empty function to allow a simpler preexec function
+   vcs_info() { ; }
+fi
+
 precmd() { vcs_info 'prompt' }
 
 if [[ -z ${SSH_TTY} ]] ; then
@@ -137,38 +124,55 @@ else
    PROMPT=$'%{\e[01;36m%}%n %(?..%{\e[01;31m%})%(!.#.$) %{\e[00;00m%}'
    RPROMPT=$'%{\e[01;33m%}%m %{\e[01;32m%}%1~%{\e[00;00m%}'
 fi
+# }}}
 
-# terminal titles
-#
-#if [[ "${TERM}" != "linux" ]] ; then
-#   precmd() { print -Pn "\e]0;%n@%m: ${(q)$(print -rPn "%40>...>${(V)1:-${SHELL}}" | tr '\n' ';')}\007" }
-#   preexec() { print -Pn "\e]0;%n@%m: ${(q)$(print -rPn "%40>...>${(V)1:-${SHELL}}" | tr '\n' ';')}\007" }
-#fi
+# {{{ history
+export HISTSIZE=1000
+export SAVEHIST=1000
+export HISTFILE="${HOME}/.zsh/.${HOST}-history"
 
-# completion menu
-zstyle ':completion:*' menu select=1
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_SPACE
+setopt HIST_REDUCE_BLANKS
+setopt INC_APPEND_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+
+unsetopt HIST_BEEP
+unsetopt EXTENDED_HISTORY
+# }}}
+
+# {{{ completion
+autoload -Uz compinit ; compinit -d "${HOME}/.zsh/.${HOST}-zcompdump"
+
+# {{{ ignored completion
 zstyle ':completion:*:functions' ignored-patterns '_*'
+# }}}
 
-# group matches
+# {{{ caching
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "${HOME}/.zsh/.${HOST}-zcompcache"
+# }}}
+
+# {{{ menu
+zstyle ':completion:*' menu select=1
+# }}}
+
+# {{{ grouping
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:matches' group 'yes'
+# }}}
 
-# colors on completions
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-
-# users are all useless, ignore them always
+# {{{ user completion
 zstyle -e ':completion:*' users "reply=( root '${USERNAME}' )"
+# }}}
 
-# caching good
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path "${HOME}/.zsh/.${HOST}-cache"
-
-# descriptions
+# {{{ descriptions
 zstyle ':completion:*:messages' format $'\e[01;35m -- %d -- \e[00;00m'
 zstyle ':completion:*:warnings' format $'\e[01;31m -- No Matches Found -- \e[00;00m'
 zstyle ':completion:*:descriptions' format $'\e[01;33m -- %d -- \e[00;00m'
+# }}}
 
-# kill/killall menu and general process listing
+# {{{ process management
 zstyle ':completion:*:*:kill:*' menu yes select
 zstyle ':completion:*:*:kill:*:processes' command 'ps -U '${USERNAME}' -o pid,cmd | sed "/ps -U '${USERNAME}' -o pid,cmd/d"'
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=31;31'
@@ -177,25 +181,32 @@ zstyle ':completion:*:*:killall:*' menu yes select
 zstyle ':completion:*:*:killall:*:processes-names' command 'ps -U '${USERNAME}' -o cmd'
 
 zstyle ':completion:*:processes-names' command 'ps axho command'
+# }}}
 
-# case insensitivity, partial matching, substitution
+# {{{ matching
+# case insensitive, partial matching, substitution
 zstyle ':completion:*' matcher-list 'm:{A-Z}={a-z}' 'm:{a-z}={A-Z}' 'r:|[-._]=* r:|=*' 'l:|=* r:|=*' '+l:|=*'
+# }}}
 
-# compctl should die
-zstyle ':completion:*' use-compctl false
+# {{{ colourise output
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+# }}}
 
-# dont suggest the first parameter again
+# {{{ prevent parameter resuggestion
 zstyle ':completion:*:ls:*' ignore-line yes
 zstyle ':completion:*:rm:*' ignore-line yes
 zstyle ':completion:*:scp:*' ignore-line yes
 zstyle ':completion:*:diff:*' ignore-line yes
+# }}}
+# }}}
 
-# Keep track of other people accessing the box
+# {{{ watch
 watch=( all )
 export LOGCHECK=30
 export WATCHFMT=$'\e[01;36m'" -- %n@%m has %(a.Logged In.Logged out) --"$'\e[00;00m'
+# }}}
 
-# directory hashes
+# {{{ directory hashes
 if [[ -d "${HOME}/sandbox" ]] ; then
    hash -d sandbox="${HOME}/sandbox"
 fi
@@ -207,11 +218,13 @@ if [[ -d "${HOME}/work" ]] ; then
       hash -d $(basename "${dir}")="${dir}"
    done
 fi
+# }}}
 
-# extras
+# {{{ per host configuration
 if [[ -d "${HOME}/.zsh" ]] ; then
    for file in "${HOME}"/.zsh/*(N.x:t) ; do
       source "${HOME}/.zsh/${file}"
    done
 fi
+# }}}
 
