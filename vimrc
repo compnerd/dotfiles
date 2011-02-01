@@ -60,9 +60,6 @@ filetype on          " Detect filetype by extensions
 filetype indent on   " Enable indents based on extensions
 filetype plugin on   " Load filetype plugins
 
-" SCons files are really python
-autocmd BufRead,BufNewFile *.sc,Sconscript set filetype=python
-
 " ---- Colour Schemes ----
 set background=dark  " prefer dark backgrounds
 
