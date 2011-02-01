@@ -139,6 +139,11 @@ if has("cscope")
    nmap <leader>r :cs find s <C-R>=expand("<cword>")<CR><CR>
 endif
 
+" ---- Build Tools Setup ----
+if filereadable("SConstruct")
+   set makeprg=scons\ -Q
+endif
+
 " ---- Restore Cursor Location ----
 autocmd BufReadPost *
    \ if line("'\"") > 0 && line("'\"") <= line("$") |
