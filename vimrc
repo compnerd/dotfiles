@@ -36,6 +36,7 @@ set wildignore=*.o,*~      " ignore temporary files in wildmenu
 
 set scrolloff=3            " show 3 lines of context when scrolling
 set sidescrolloff=2        " show 2 columns of context when scrolling
+set nostartofline          " don't jump to first character when paging
 
 set hidden                 " allow flipping of buffers without saving
 
@@ -48,6 +49,7 @@ let &showbreak = "↪ "      " continuation character
 set virtualedit=block      " allow virtual editing in visual block mode
 
 set lazyredraw             " prevent window updates during macro execution
+set ttyfast                " use advanced tty features for smoother drawing
 
 " --- Syntax Highlighting ----
 if &t_Co > 2 || has("gui_running")
