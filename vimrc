@@ -123,8 +123,14 @@ set tags=tags;/
 if has("cscope")
    set csto=1           " check ctags before cscope
 
+   set nocsverb
    if filereadable("cscope.out")
       cs add cscope.out
+   endif
+   set csverb
+
+   if has("quickfix")
+      set csqf=s-,c-,d-,i-,t-,e-
    endif
 
    " c -> calls ; d -> definition ; r -> references
