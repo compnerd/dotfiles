@@ -150,6 +150,12 @@ autocmd BufReadPost *
    \  exe "normal g'\"" |
    \ endif
 
+" ---- Text Width Marker ----
+if (v:version >= 730)
+   set colourcolumn=+1
+   highlight ColorColumn guibg=#592929
+endif
+
 " ---- Key Mappings ----
 
 " line numbers
