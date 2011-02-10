@@ -195,5 +195,7 @@ endfun
 
 autocmd FileType c,cpp :call CAbbrev()
 
-digraph ., 8230               " elipsis (…)
+if has("digraph")
+   digraph ., 8230               " elipsis (…)
+endif
 
