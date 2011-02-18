@@ -123,22 +123,27 @@ set showfulltag         " show full tags when doing completion
 set tags=tags;/
 
 if has("cscope")
-   set csto=1           " check ctags before cscope
+   set cscopetag        " search both cscope and ctags
+   set cscopetagorder=1 " check ctags before cscope
 
-   set nocsverb
+   set nocscopeverbose
    if filereadable("cscope.out")
       cs add cscope.out
    endif
-   set csverb
+   set cscopeverbose
 
    if has("quickfix")
-      set csqf=s-,c-,d-,i-,t-,e-
+      set cscopequickfix=s-,c-,d-,i-,t-,e-
    endif
 
    " c -> calls ; d -> definition ; r -> references
    nmap <leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>
    nmap <leader>d :cs find g <C-R>=expand("<cword>")<CR><CR>
    nmap <leader>r :cs find s <C-R>=expand("<cword>")<CR><CR>
+
+   nmap <leader>C :scs find c <C-R>=expand("<cword>")<CR><CR>
+   nmap <leader>D :scs find g <C-R>=expand("<cword>")<CR><CR>
+   nmap <leader>R :scs find s <C-R>=expand("<cword>")<CR><CR>
 endif
 
 " ---- Build Tools Setup ----
