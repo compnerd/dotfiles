@@ -1,20 +1,24 @@
-[color]
-   ui = auto
-
 [alias]
    amend = commit --amend
    staged = diff --cached
    changes = diff --name-status -r
    diffstat = diff --stat -r
 
-[merge]
-   tool = vimdiff
+[color]
+   ui = auto
 
 [diff]
    renames = copy
 
 [help]
    autocorrect = 1
+
+[merge]
+   tool = vimdiff
+
+[rebase]
+   stat = true
+   autosquash = true
 
 [url "git@github.com:"]
    insteadof = github:
