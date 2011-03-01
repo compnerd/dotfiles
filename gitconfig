@@ -4,6 +4,9 @@
    changes = diff --name-status -r
    diffstat = diff --stat -r
 
+[branch]
+    autosetuprebase = always
+
 [color]
    ui = auto
 
