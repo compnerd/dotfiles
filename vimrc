@@ -14,8 +14,9 @@ set nocompatible            " Don't emulate vi's limitations
 
 set encoding=utf-8          " Default encoding should always be UTF-8
 
-set tabstop=3               " 3 spaces for tabs
-set shiftwidth=3            " 3 spaces for indents
+set tabstop=8               " 8 spaces for tabs
+set shiftwidth=4            " 4 spaces for indenting
+set softtabstop=4           " 4 spaces for indenting
 set smarttab                " tab next line based on current line
 set expandtab               " spaces for tabs
 set autoindent              " automatically indent next line based on current line
@@ -34,7 +35,7 @@ set wildmenu                " menu on completion please
 set wildmode=longest,full   " match the longest substring, complete with first
 set wildignore=*.o,*~       " ignore temporary files in wildmenu
 
-set scrolloff=3             " show 3 lines of context when scrolling
+set scrolloff=2             " show 2 lines of context when scrolling
 set sidescrolloff=2         " show 2 columns of context when scrolling
 set nostartofline           " don't jump to first character when paging
 
