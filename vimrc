@@ -194,7 +194,7 @@ fun! CAbbrev()
     iab #E #endif
 endfun
 
-autocmd FileType c,cpp :call CAbbrev()
+autocmd FileType c,cpp,c.doxygen,cpp.doxygen :call CAbbrev()
 
 if has("digraph")
     digraph ., 8230        " elipsis (…)
