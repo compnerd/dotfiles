@@ -117,18 +117,17 @@ if (v:version >= 700)
 endif
 
 " ---- Code Indexing (ctags/cscope) ----
+set tags=tags;/             " search for tags in parent directory, recursively
 set showfulltag             " show full tags when doing completion
-
-" search for tags in parent directory, recursively
-set tags=tags;/
+set tagrelative             " paths are relative to tag file
 
 if has("cscope")
-    set cscopetag           " search both cscope and ctags
+    set cscopetag           " search both ctags and cscope
     set cscopetagorder=1    " check ctags before cscope
 
     set nocscopeverbose
     if filereadable("cscope.out")
-        cs add cscope.out
+        cscope add cscope.out
     endif
     set cscopeverbose
 
@@ -136,14 +135,11 @@ if has("cscope")
         set cscopequickfix=s-,c-,d-,i-,t-,e-
     endif
 
-    " c -> calls ; d -> definition ; r -> references
-    nmap <leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-    nmap <leader>d :cs find g <C-R>=expand("<cword>")<CR><CR>
-    nmap <leader>r :cs find s <C-R>=expand("<cword>")<CR><CR>
-
-    nmap <leader>C :scs find c <C-R>=expand("<cword>")<CR><CR>
-    nmap <leader>D :scs find g <C-R>=expand("<cword>")<CR><CR>
-    nmap <leader>R :scs find s <C-R>=expand("<cword>")<CR><CR>
+    " c -> calls ; d -> definition ; f -> file ; r -> references
+    nmap <leader>cc :cscope find c <C-R>=expand("<cword>")<CR><CR>
+    nmap <leader>cf :cscope find f <C-R>=expand("<cword>")<CR><CR>
+    nmap <leader>cd :cscope find g <C-R>=expand("<cword>")<CR><CR>
+    nmap <leader>cr :cscope find s <C-R>=expand("<cword>")<CR><CR>
 endif
 
 " ---- Build Tools Setup ----
