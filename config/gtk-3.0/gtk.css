@@ -1,0 +1,33 @@
+
+GtkToolbar {
+    padding: 0;
+
+    border-width: 0;
+    border-style: none;
+
+    background-image: -gtk-gradient (linear,
+                                     left top, left bottom,
+                                     from (shade (@theme_bg_color, 0.97)),
+                                     color-stop (0.45, shade (@theme_bg_color, 0.97)),
+                                     to (shade (@theme_bg_color, 0, 99)));
+}
+
+GtkToolbar > GtkEntry {
+    background-color: magenta;
+}
+
+.toolbar .entry {
+    padding: 2;
+
+    border-color: @focused_entry_border;
+    border-radius: 3;
+    border-width: 1;
+    border-style: solid;
+
+    background-image: none;
+}
+
+GtkNotebook tab {
+    padding: 0 0 0 5;
+}
+
