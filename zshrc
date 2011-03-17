@@ -144,17 +144,23 @@ unsetopt EXTENDED_HISTORY
 # {{{ completion
 autoload -Uz compinit ; compinit -d "${HOME}/.zsh/.${HOST}-zcompdump"
 
-# {{{ ignored completion
-zstyle ':completion:*:functions' ignored-patterns '_*'
-# }}}
-
 # {{{ caching
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "${HOME}/.zsh/.${HOST}-zcompcache"
 # }}}
 
-# {{{ menu
-zstyle ':completion:*' menu select=1
+# {{{ colourise output
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+# }}}
+
+# {{{ completion suggestion order
+zstyle ':completion:*' completer _expand _complete _prefix _correct _match _approximate
+# }}}
+
+# {{{ descriptions
+zstyle ':completion:*:messages' format $'\e[01;35m -- %d -- \e[00;00m'
+zstyle ':completion:*:warnings' format $'\e[01;31m -- No Matches Found -- \e[00;00m'
+zstyle ':completion:*:descriptions' format $'\e[01;33m -- %d -- \e[00;00m'
 # }}}
 
 # {{{ grouping
@@ -162,14 +168,33 @@ zstyle ':completion:*' group-name ''
 zstyle ':completion:*:matches' group 'yes'
 # }}}
 
-# {{{ user completion
-zstyle -e ':completion:*' users "reply=( root '${USERNAME}' )"
+# {{{ ignored completion
+# commands that are not present
+zstyle ':completion:*:functions' ignored-patterns '_*'
+
+# prevent parameter resuggestion
+zstyle ':completion:*:ls:*' ignore-line yes
+zstyle ':completion:*:rm:*' ignore-line yes
+zstyle ':completion:*:scp:*' ignore-line yes
+zstyle ':completion:*:diff:*' ignore-line yes
 # }}}
 
-# {{{ descriptions
-zstyle ':completion:*:messages' format $'\e[01;35m -- %d -- \e[00;00m'
-zstyle ':completion:*:warnings' format $'\e[01;31m -- No Matches Found -- \e[00;00m'
-zstyle ':completion:*:descriptions' format $'\e[01;33m -- %d -- \e[00;00m'
+# {{{ jobs
+zstyle ':completion:*:jobs' numbers true
+# }}}
+
+# {{{ man pages
+zstyle ':completion:*:manuals:*' insert-sections true
+zstyle ':completion:*:manuals:*' separate-sections true
+# }}}
+
+# {{{ matching
+# case insensitive, partial matching, substitution
+zstyle ':completion:*' matcher-list 'm:{A-Z}={a-z}' 'm:{a-z}={A-Z}' 'r:|[-._]=* r:|=*' 'l:|=* r:|=*' '+l:|=*'
+# }}}
+
+# {{{ menu
+zstyle ':completion:*' menu select=1
 # }}}
 
 # {{{ process management
@@ -183,20 +208,8 @@ zstyle ':completion:*:*:killall:*:processes-names' command 'ps -U '${USERNAME}' 
 zstyle ':completion:*:processes-names' command 'ps axho command'
 # }}}
 
-# {{{ matching
-# case insensitive, partial matching, substitution
-zstyle ':completion:*' matcher-list 'm:{A-Z}={a-z}' 'm:{a-z}={A-Z}' 'r:|[-._]=* r:|=*' 'l:|=* r:|=*' '+l:|=*'
-# }}}
-
-# {{{ colourise output
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-# }}}
-
-# {{{ prevent parameter resuggestion
-zstyle ':completion:*:ls:*' ignore-line yes
-zstyle ':completion:*:rm:*' ignore-line yes
-zstyle ':completion:*:scp:*' ignore-line yes
-zstyle ':completion:*:diff:*' ignore-line yes
+# {{{ user completion
+zstyle -e ':completion:*' users "reply=( root '${USERNAME}' )"
 # }}}
 # }}}
 
