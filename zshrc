@@ -101,29 +101,7 @@ fi
 # }}}
 
 # {{{ prompt
-if [[ ${ZSH_VERSION//.} -gt 410 ]] ; then
-   autoload -Uz vcs_info
-   autoload -Uz colors
-
-   zstyle ':vcs_info:*:prompt:*' stagedstr '^'
-   zstyle ':vcs_info:*:prompt:*' unstagedstr '+'
-   zstyle ':vcs_info:*:prompt:*' check-for-changes true
-   zstyle ':vcs_info:*:prompt:*' formats $'%{\e[01;36m%}«%{\e[01;32m%}%s%{\e[00;32m%}:%{\e[01;34m%}%r%{\e[00;32m%}/%{\e[01;35m%}%b%{\e[01;33m%}%{\e[01;36m%}[%{\e[01;33m%}%u%c%{\e[01;36m%}]%{\e[01;36m%}»%{\e[00;00m%} ' '%S'
-   zstyle ':vcs_info:*:prompt:*' actionformats $'%{\e[01;36m%}«%{\e[01;32m%}%s%{\e[01;36m%}(%{\e[01;35m%}%a%{\e[01;36m%})%{\e[00;32m%}:%{\e[01;34m%}%r%{\e[00;32m%}/%{\e[01;35m%}%b%{\e[01;33m%}%{\e[01;36m%}[%{\e[01;33m%}%u%c%{\e[01;36m%}]%{\e[01;36m%}»%{\e[00;00m%} ' '%S'
-   zstyle ':vcs_info:*:prompt:*' nvcsformats "" $'%1~'
-else
-   # define the empty function to allow a simpler preexec function
-   vcs_info() { ; }
-fi
-
-precmd() { vcs_info 'prompt' }
-
-if [[ -z ${SSH_TTY} ]] ; then
-   PROMPT=$'%{\e[01;33m%}%h ${vcs_info_msg_0_}%{\e[01;32m%}%n@%m %{\e[01;34m%}${${vcs_info_msg_1_/^.$/}:-%1~} %(?..%{\e[01;31m%})%(!.#.$) %{\e[00;00m%}'
-else
-   PROMPT=$'%{\e[01;36m%}%n %(?..%{\e[01;31m%})%(!.#.$) %{\e[00;00m%}'
-   RPROMPT=$'%{\e[01;33m%}%m %{\e[01;32m%}%1~%{\e[00;00m%}'
-fi
+PROMPT=$'%{\e[01;32m%}%n@%m %{\e[01;34m%}%1~ %(?..%{\e[01;31m%})%(!.#.$) %{\e[00;00m%}'
 # }}}
 
 # {{{ history
