@@ -88,7 +88,7 @@ export PS1='\[\033[01;32m\]\u@\h \[\033[01;34m\]\w \[$(_ps_retval_colour_f $?)\]
 # {{{ history
 export HISTTIMEFORMAT='%F %T '
 export HISTCONTROL=erasedups
-export HISTFILE="${HOME}/.bash/.history"
+export HISTFILE="${HOME}/.bash/.${HOST}-history"
 # }}}
 
 # {{{ per host configuration
