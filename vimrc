@@ -107,7 +107,7 @@ endif
 
 " ---- Status Line ----
 set laststatus=2
-set shortmess=atI
+set shortmess=aItT
 set statusline=Editing:\ %r%t%m\ %=Location:\ Line\ %l/%L\ \ Col:\ %v\ (%p%%)
 
 " ---- Spell Checking ----
