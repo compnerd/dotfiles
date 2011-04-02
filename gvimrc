@@ -6,7 +6,7 @@ scriptencoding utf-8
 
 set guioptions=aegi
 set guicursor=a:ver1
-set guifont=Monaco\ 7
+set guifont=envy\ code\ r\ 8,consolas\ 8,monaco\ 8
 
 " ---- man page viewer ----
 source $VIMRUNTIME/ftplugin/man.vim
