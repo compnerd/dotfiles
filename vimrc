@@ -53,10 +53,8 @@ set lazyredraw              " prevent window updates during macro execution
 set ttyfast                 " use advanced tty features for smoother drawing
 
 " --- Syntax Highlighting ----
-if &t_Co > 2 || has("gui_running")
-    syntax on               " enable syntax highlighting
-    syntax sync fromstart   " parse from the beginning to get accurate syntax highlighting
-endif
+syntax on                   " enable syntax highlighting
+syntax sync fromstart       " parse from the beginning to get accurate syntax highlighting
 
 " ---- Filetypes ----
 filetype on                 " Detect filetype by extensions
