@@ -52,7 +52,7 @@ set virtualedit=block       " allow virtual editing in visual block mode
 set lazyredraw              " prevent window updates during macro execution
 set ttyfast                 " use advanced tty features for smoother drawing
 
-" --- Syntax Highlighting ----
+" ---- Syntax Highlighting ----
 syntax on                   " enable syntax highlighting
 syntax sync fromstart       " parse from the beginning to get accurate syntax highlighting
 
@@ -114,6 +114,10 @@ set statusline=Editing:\ %r%t%m\ %=Location:\ Line\ %l/%L\ \ Col:\ %v\ (%p%%)
 if (v:version >= 700)
     set spelllang=en_us     " US English spelling please
 endif
+
+" ---- Code Folding ----
+set fillchars=fold:\        " no fill characters for folds
+let javascript_fold = 1     " enable folding for JavaScript
 
 " ---- Code Indexing (ctags/cscope) ----
 set tags=tags;/             " search for tags in parent directory, recursively
