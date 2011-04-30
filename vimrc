@@ -155,7 +155,7 @@ autocmd BufReadPost *
 " ---- Text Width Marker ----
 if (v:version >= 703)
     set colorcolumn=+1
-    highlight ColorColumn guibg=#592929
+    highlight ColorColumn ctermbg=88 guibg=#5f0000
 endif
 
 " ---- Key Mappings ----
