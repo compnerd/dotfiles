@@ -150,6 +150,9 @@ if filereadable("SConstruct")
     set makeprg=scons\ -Q
 endif
 
+autocmd FileType scons
+    \ setlocal includeexpr=substitute(v:fname,'#/',substitute(findfile('SConstruct','.;'),'SConstruct','','g'),'g')
+
 " ---- Restore Cursor Location ----
 autocmd BufReadPost *
     \ if line("'\"") > 0 && line("'\"") <= line("$") |
