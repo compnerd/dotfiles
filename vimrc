@@ -167,6 +167,9 @@ endif
 
 " ---- Key Mappings ----
 
+" blackhole register ("_ is hard to type, use the leader instead)
+map <leader>b "_
+
 " line numbers
 nmap <silent> <F12> :silent set number!<CR>
 imap <silent> <F12> <C-O>:silent set number!<CR>
