@@ -6,7 +6,7 @@ scriptencoding utf-8
 
 set guioptions=aegi
 set guicursor=a:ver1
-set guifont=envy\ code\ r\ 8,consolas\ 8,monaco\ 8
+set guifont=Envy\ Code\ R\ 8,Consolas\ 8,Monaco\ 8
 
 " ---- man page viewer ----
 source $VIMRUNTIME/ftplugin/man.vim
@@ -21,5 +21,5 @@ endfun
 
 nmap <silent> K :<C-U>call ShowManPage(v:count, expand("<cword>"))<CR>
 
-autocmd FileType man set nolist ts=8
+autocmd FileType man set nolist
 
