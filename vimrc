@@ -82,7 +82,7 @@ endfun
 
 if has("gui_running")
     call LoadColourScheme("xoria256:wombat256:inkpot")
-elseif &t_Co == 256 || &t_Co == 88
+elseif (&t_Co == 88) || (&t_Co == 256)
     call LoadColourScheme("distinguished:xoria256:wombat256:inkpot")
 else
     call LoadColourScheme("elflord:zellner")
@@ -92,13 +92,13 @@ endif
 
 " shamelessly stolen from Ciaran McCreesh <ciaran.mccreesh@gmail.com>
 if (&termencoding == "utf-8") || has("gui_running")
-    if v:version >= 700
+    if (v:version >= 700)
         set list listchars=tab:»·,trail:·,extends:…,nbsp:‗
     else
         set list listchars=tab:»·,trail:·,extends:…
     endif
 else
-    if v:version >= 700
+    if (v:version >= 700)
         set list listchars=tab:>-,trail:.,extends:>,nbsp:_
     else
         set list listchars=tab:>-,trail:.,extends:>
