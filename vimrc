@@ -174,6 +174,9 @@ map <leader>b "_
 nmap <silent> <F12> :silent set number!<CR>
 imap <silent> <F12> <C-O>:silent set number!<CR>
 
+nmap <silent> <S-F12> :silent set relativenumber!<CR>
+imap <silent> <S-F12> <C-O>:silent set relativenumber!<CR>
+
 " spell checking
 if (v:version >= 700)
     nmap <silent> <F10> :silent set spell!<CR>
