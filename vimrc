@@ -191,18 +191,18 @@ vmap K k
 nmap K K<CR>
 
 " ---- shortcuts ----
-fun! CAbbrev()
-    iab #i #include
-    iab #I #include
+function! s:iabbrev()
+    iabbrev #i #include
+    iabbrev #I #include
 
-    iab #d #define
-    iab #D #define
+    iabbrev #d #define
+    iabbrev #D #define
 
-    iab #e #endif
-    iab #E #endif
-endfun
+    iabbrev #e #endif
+    iabbrev #E #endif
+endfunction
 
-autocmd FileType c,cpp,c.doxygen,cpp.doxygen :call CAbbrev()
+autocmd FileType c,cpp,c.doxygen,cpp.doxygen call s:iabbrev()
 
 if has("digraph")
     digraph ., 8230        " elipsis (…)
