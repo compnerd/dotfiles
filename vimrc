@@ -81,9 +81,9 @@ fun! LoadColourScheme(schemes)
 endfun
 
 if has("gui_running")
-    call LoadColourScheme("xoria256:wombat256:inkpot")
+    call LoadColourScheme("lucius:xoria256:wombat256:inkpot")
 elseif (&t_Co == 88) || (&t_Co == 256)
-    call LoadColourScheme("distinguished:xoria256:wombat256:inkpot")
+    call LoadColourScheme("lucius:xoria256:wombat256:inkpot")
 else
     call LoadColourScheme("elflord:zellner")
 endif
