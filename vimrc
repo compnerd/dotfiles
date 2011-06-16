@@ -134,10 +134,6 @@ if has("cscope")
     endif
     set cscopeverbose
 
-    if has("quickfix")
-        set cscopequickfix=s-,c-,d-,i-,t-,e-
-    endif
-
     " c -> calls ; d -> definition ; f -> file ; r -> references
     nmap <leader>cc :cscope find c <C-R>=expand("<cword>")<CR><CR>
     nmap <leader>cf :cscope find f <C-R>=expand("<cword>")<CR><CR>
