@@ -208,3 +208,7 @@ if has("digraph")
     digraph ., 8230        " elipsis (…)
 endif
 
+if !has("unix")
+    set viminfo+=n$HOME/.viminfo
+endif
+
