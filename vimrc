@@ -22,6 +22,8 @@ set expandtab               " spaces for tabs
 set autoindent              " automatically indent next line based on current line
 set smartindent             " indent next line based on current line
 
+set backspace=2             " fix backspace behaviour (indent,eol,start)
+
 set incsearch               " enable incremental searching
 set hlsearch                " hilight search matches
 set ignorecase              " case insensitive search ...
