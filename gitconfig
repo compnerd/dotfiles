@@ -27,6 +27,10 @@
     stat = true
     autosquash = true
 
+[rerere]
+    enabled = true
+    autoupdate = true
+
 [url "git@github.com:"]
     insteadof = github:
 
