@@ -8,7 +8,7 @@ set guioptions=aegi
 set guicursor=a:ver1
 
 if has("unix")
-   set guifont=Envy\ Code\ R\ 8,Consolas\ 8,Monaco\ 8
+   set guifont=Envy\ Code\ R\ 8,Consolas\ 8,Monaco\ 8,Cousine\ 8
 else
    set guifont=Consolas:h8
 endif
