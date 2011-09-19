@@ -7,6 +7,9 @@ scriptencoding utf-8
 set guioptions=aegi
 set guicursor=a:ver1
 
+set columns=140
+set lines=50
+
 if has("unix")
    set guifont=Envy\ Code\ R\ 8,Consolas\ 8,Monaco\ 8,Cousine\ 8
 else
