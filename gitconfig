@@ -7,6 +7,7 @@
     ls-ignored = ls-files --exclude-standard --ignored --others
 
 [branch]
+    autosetupmerge = true
     autosetuprebase = always
 
 [color]
