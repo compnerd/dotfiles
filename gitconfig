@@ -31,6 +31,9 @@
     enabled = true
     autoupdate = true
 
+[sendemail]
+    chainreplyto = true
+
 [url "git@github.com:"]
     insteadof = github:
 
