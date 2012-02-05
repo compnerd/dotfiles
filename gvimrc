@@ -11,7 +11,7 @@ set columns=140
 set lines=50
 
 if has("unix")
-   set guifont=Envy\ Code\ R\ 8,Consolas\ 8,Monaco\ 8,Cousine\ 8
+   set guifont=Consolas\ 8,Envy\ Code\ R\ 8,Monaco\ 8,Cousine\ 8
 else
    set guifont=Consolas:h8
 endif
