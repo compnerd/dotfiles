@@ -92,9 +92,9 @@ fun! LoadColourScheme(schemes)
 endfun
 
 if has("gui_running")
-    call LoadColourScheme("Tomorrow-Night:lucius:xoria256:wombat256:inkpot")
+    call LoadColourScheme("xoria256:wombat256:lucius:inkpot")
 elseif (&t_Co == 88) || (&t_Co == 256)
-    call LoadColourScheme("Tomorrow-Night:lucius:xoria256:wombat256:inkpot")
+    call LoadColourScheme("xoria256:wombat256:lucius:inkpot")
 else
     call LoadColourScheme("elflord:zellner")
 endif
