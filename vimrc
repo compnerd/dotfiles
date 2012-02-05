@@ -63,6 +63,15 @@ filetype on                 " Detect filetype by extensions
 filetype indent on          " Enable indents based on extensions
 filetype plugin on          " Load filetype plugins
 
+" ---- codetags ----
+autocmd syntax c syn keyword cTodo contained TODO
+autocmd syntax * syn keyword hNote contained NOTE | hi def link hNote Note
+autocmd syntax * syn keyword hHack contained HACK | hi def link hHack Hack
+
+autocmd colorscheme * highlight Todo term=standout gui=bold guibg=NONE guifg=#eeee00 cterm=bold ctermbg=NONE ctermfg=yellow
+autocmd colorscheme * highlight Note term=standout gui=bold guibg=NONE guifg=#0000ee cterm=bold ctermbg=NONE ctermfg=blue
+autocmd colorscheme * highlight Hack term=standout gui=bold guibg=NONE guifg=#ee0000 cterm=bold ctermbg=NONE ctermfg=red
+
 " ---- Colour Schemes ----
 set background=dark         " prefer dark backgrounds
 
