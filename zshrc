@@ -189,6 +189,10 @@ zstyle ':completion:*:processes-names' command 'ps axho command'
 # {{{ user completion
 zstyle -e ':completion:*' users "reply=( root '${USERNAME}' )"
 # }}}
+
+# {{{ git completion
+__git_files() { _wanted files expl 'local files' _files ; }
+# }}}
 # }}}
 
 # {{{ watch
