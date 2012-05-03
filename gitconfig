@@ -1,3 +1,7 @@
+# .gitconfig
+# Copyright (c) 2010-2012 Saleem Abdulrasool <compnerd@compnerd.org>
+# vim: set ft=gitconfig sts=4 sw=4 ts=8 :
+
 [alias]
     amend = commit --amend
     staged = diff --cached
