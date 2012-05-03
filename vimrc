@@ -211,6 +211,9 @@ function! s:iabbrev()
 
     iabbrev #e #endif
     iabbrev #E #endif
+
+    iabbrev #p #pragma
+    iabbrev #P #pragma
 endfunction
 
 autocmd FileType c,cpp,c.doxygen,cpp.doxygen call s:iabbrev()
