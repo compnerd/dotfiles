@@ -53,7 +53,7 @@ esac
 # }}}
 
 # {{{ GNU environment options
-export GREP_OPTIONS="--directories=skip --color=auto"
+export GREP_OPTIONS="--directories=skip --color=auto --exclude='.*.sw*'"
 # }}}
 
 # {{{ aliases
