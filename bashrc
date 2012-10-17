@@ -46,11 +46,11 @@ export GREP_OPTIONS="--directories=skip --color=auto --exclude='.*.sw*'"
 alias cd..='cd ..'
 
 case $(uname -s) in
-    Darwin)
-        alias ls='ls -G'
+Darwin)
+    alias ls='ls -G'
     ;;
-    *)
-        alias ls='ls --human-readable --color=auto'
+*)
+    alias ls='ls --human-readable --color=auto'
     ;;
 esac
 
