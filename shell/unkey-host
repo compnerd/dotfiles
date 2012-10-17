@@ -1,0 +1,8 @@
+#!/bin/sh
+# vim: set ft=sh ts=4 sts=4 sw=4 :
+
+unkey-host()
+{
+    ssh-keygen -R "${1##*@}"
+}
+

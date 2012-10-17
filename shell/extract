@@ -1,0 +1,83 @@
+#!/bin/sh
+# vim: set ft=sh ts=4 sts=4 sw=4 :
+
+extract()
+{
+    local filename=
+
+    if [ ! -f "${1}" ] ; then
+        echo "'${1}' does not exist!" >&2
+        return 1
+    fi
+
+    filename=$(echo -- ${1} | tr '[:upper:]' '[:lower:]')
+
+    case "${filename}" in
+    *.tar)
+        tar xf "${1}" --no-same-owner
+        ;;
+    *.tar.7z)
+        7z x -y -so "${1}" | tar xf - --no-same-owner
+        ;;
+    *.tar.bz2|*.tbz2)
+        tar jxf "${1}" --no-same-owner
+        ;;
+    *.tar.gz|*.tgz)
+        tar zxf "${1}" --no-same-owner
+        ;;
+    *.tar.lzma)
+        lzma -dc "${1}" | tar xf - --no-same-owner
+        ;;
+    *.tar.xz)
+        xz -dc "${1}" | tar -xf - --no-same-owner
+        ;;
+    *.7z)
+        7z x -y "${1}"
+        ;;
+    *.a|*.deb)
+        ar x "${1}"
+        ;;
+    *.ace)
+        unace x "${1}"
+        ;;
+    *.arj)
+        arj x "${1}"
+        ;;
+    *.bz2)
+        bzip2 -dc "${1}" > $(basename -- "${1%.*}")
+        ;;
+    *.cpio)
+        cpio -id < "${1}"
+        ;;
+    *.gz|*.z)
+        gzip -dc "${1}" > $(basename -- "${1%.*}")
+        ;;
+    *.jar|*.zip)
+        unzip -qo "${1}"
+        ;;
+    *.lha)
+        lhz xfq "${1}"
+        ;;
+    *.lzma)
+        lzma -dc "${1}" > $(basename -- "${1%.*}")
+        ;;
+    *.pax)
+        pax -rf "${1}"
+        ;;
+    *.rar)
+        unrar x -idq "${1}"
+        ;;
+    *.rpm)
+        rpm2cpio "${1}" | cpio -id
+        ;;
+    *.xz)
+        xz -dc "${1}" > $(basename -- "${1%.*}")
+        ;;
+    esac
+}
+
+# Z-Shell Completion Binding
+if [ "$(basename -- "${0}")" = "zsh" ] ; then
+    zstyle ':completion:*:*:extract:*' file-patterns '*.(tar|tar.7z|tar.bz2|tbz2|tar.gz|tgz|tar.lzma|tar.xz|7z|a|deb|ace|arj|bz2|cpio|gz|z|jar|zip|lha|lzma|pax|rar|rpm|xz):Compressed\ Files *(-/):directories'
+fi
+
