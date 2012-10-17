@@ -41,7 +41,9 @@ ulimit -c 0
 # }}}
 
 # {{{ colours
-eval $(dircolors -b $([[ -f /etc/DIR_COLORS ]] && echo "/etc/DIR_COLORS"))
+if $(type dircolors >/dev/null) ; then
+    eval $(dircolors -b $([[ -f /etc/DIR_COLORS ]] && echo "/etc/DIR_COLORS"))
+fi
 # }}}
 
 # {{{ terminal
@@ -59,7 +61,14 @@ export GREP_OPTIONS="--directories=skip --color=auto --exclude='.*.sw*'"
 # {{{ aliases
 alias cd..='cd ..'
 
-alias ls='ls --human-readable --color=auto'
+case $(uname -s) in
+Darwin)
+    alias ls='ls -G'
+    ;;
+*)
+    alias ls='ls --human-readable --color=auto'
+    ;;
+esac
 
 alias df='df --human-readable'
 alias du='du --human-readable'
