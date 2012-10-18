@@ -39,7 +39,7 @@ esac
 # }}}
 
 # {{{ GNU environment options
-export GREP_OPTIONS="--directories=skip --color=auto --exclude='.*.sw*'"
+export GREP_OPTIONS="--directories=skip --color=auto --exclude='.*.sw*' --exclude-dir='.git' --exclude-dir='.svn'"
 # }}}
 
 # {{{ alias
