@@ -25,6 +25,11 @@ ulimit -c 0
 # }}}
 
 # {{{ colours
+if [[ "$(uname -s)" == "FreeBSD" ]] ; then
+    export CLICOLOR=yes
+    export LSCOLORS=Gxfxcxdxbxegedabagacad
+fi
+
 if $(type -P dircolors) ; then
     eval $(dircolors -b $([[ -f /etc/DIR_COLORS ]] && echo "/etc/DIR_COLORS"))
 fi
@@ -46,7 +51,7 @@ export GREP_OPTIONS="--directories=skip --color=auto --exclude='.*.sw*' --exclud
 alias cd..='cd ..'
 
 case $(uname -s) in
-Darwin)
+Darwin|FreeBSD)
     alias ls='ls -G'
     ;;
 *)
