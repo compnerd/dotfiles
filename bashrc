@@ -30,7 +30,7 @@ if [[ "$(uname -s)" == "FreeBSD" ]] ; then
     export LSCOLORS=Gxfxcxdxbxegedabagacad
 fi
 
-if $(type -P dircolors) ; then
+if [[ -n "$(type -p dircolors)" ]] ; then
     eval $(dircolors -b $([[ -f /etc/DIR_COLORS ]] && echo "/etc/DIR_COLORS"))
 fi
 # }}}
@@ -66,7 +66,7 @@ alias ping='ping -c4'
 
 alias info='info --vi-keys'
 
-if type -p hilite &> /dev/null ; then
+if [[ -n "$(type -p hilite)" ]] ; then
    alias make='hilite make'
    alias scons='hilite scons'
 fi
