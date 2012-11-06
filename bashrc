@@ -25,10 +25,12 @@ ulimit -c 0
 # }}}
 
 # {{{ colours
-if [[ "$(uname -s)" == "FreeBSD" ]] ; then
+case $(uname -s) in
+Darwin|FreeBSD)
     export CLICOLOR=yes
-    export LSCOLORS=Gxfxcxdxbxegedabagacad
-fi
+    export LSCOLORS=Exfxcxdxbxegedabagacad
+    ;;
+esac
 
 if [[ -n "$(type -p dircolors)" ]] ; then
     eval $(dircolors -b $([[ -f /etc/DIR_COLORS ]] && echo "/etc/DIR_COLORS"))
