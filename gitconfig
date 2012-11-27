@@ -44,3 +44,6 @@
 [url "git://anongit.freedesktop.org/"]
     insteadof = freedesktop:
 
+[url "git://sourceware.org/git/"]
+    insteadof = sourceware:
+
