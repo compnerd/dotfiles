@@ -9,6 +9,8 @@ set nomarkers                           # do not mark line wrappings
 set check_new                           # check for new messages
 set mail_check = 60                     # autocheck timeout (seconds)
 set delete                              # delete marked messages on sync
+set pipe_decode                         # strip headers/evluate mimetypes when piping
+set thorough_search                     # strip headers/evaluate mimetypes when searching
 # }}}
 
 # {{{ ui settings
