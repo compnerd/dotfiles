@@ -101,5 +101,5 @@ bind pager R    group-reply
 # }}}
 # }}}
 
-source .mutt/settings
+source ~/.mutt/settings
 
