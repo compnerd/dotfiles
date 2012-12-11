@@ -16,6 +16,10 @@ else
    set guifont=Consolas:h8
 endif
 
+if has('gui_macvim')
+   set transparency=12
+endif
+
 " ---- man page viewer ----
 source $VIMRUNTIME/ftplugin/man.vim
 
