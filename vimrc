@@ -42,6 +42,7 @@ set sidescrolloff=2         " show 2 columns of context when scrolling
 set nostartofline           " don't jump to first character when paging
 
 set hidden                  " allow flipping of buffers without saving
+set autowrite               " save buffers on flip
 
 set nomodeline              " modelines are insecure, see securemodelines
 
@@ -94,8 +95,10 @@ endfun
 
 if has("gui_running")
     call LoadColourScheme("xoria256:wombat256:lucius:inkpot")
-elseif (&t_Co == 88) || (&t_Co == 256)
+elseif (&t_Co == 256)
     call LoadColourScheme("xoria256:wombat256:lucius:inkpot")
+elseif (&t_Co == 88)
+    call LoadColourScheme("lucius:moria:inkpot")
 else
     call LoadColourScheme("elflord:zellner")
 endif
@@ -203,7 +206,7 @@ vmap K k
 nmap K K<CR>
 
 " ---- shortcuts ----
-function! s:iabbrev()
+function! s:CPPMacroAbbreviations()
     iabbrev #i #include
     iabbrev #I #include
 
@@ -217,7 +220,7 @@ function! s:iabbrev()
     iabbrev #P #pragma
 endfunction
 
-autocmd FileType c,cpp,c.doxygen,cpp.doxygen call s:iabbrev()
+autocmd FileType c,cpp,objc,objcpp,c.doxygen,cpp.doxygen,objc.doxygen,objcpp.doxygen call s:CPPMacroAbbreviations()
 
 if has("digraph")
     digraph ., 8230        " elipsis (…)
