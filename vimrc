@@ -47,7 +47,10 @@ set autowrite               " save buffers on flip
 set nomodeline              " modelines are insecure, see securemodelines
 
 set textwidth=80            " wrap at 80 character boundary by default
-set formatoptions=tcroqnlj  " cf. fo-table
+set formatoptions=tcroqnl   " cf. fo-table
+if (v:version >= 703 && has('patch541'))
+    set formatoptions+=j    " strip comment leader when joining lines
+endif
 set linebreak               " display long lines wrapped at word boundaries
 let &showbreak = "↪ "       " continuation character
 
