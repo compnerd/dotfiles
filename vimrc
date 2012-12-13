@@ -233,3 +233,10 @@ if !has("unix")
     set viminfo+=n$HOME/.viminfo
 endif
 
+" ---- per host configuration ----
+
+let s:per_host_configuration = expand("~/.vim/settings")
+if filereadable(s:per_host_configuration)
+    execute ":source " . s:per_host_configuration
+endif
+
