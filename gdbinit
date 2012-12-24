@@ -13,3 +13,6 @@ set print array on
 set print pretty on
 set print asm-demangle on
 
+# avoid the annoying paging
+set height 0
+
