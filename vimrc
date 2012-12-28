@@ -209,21 +209,20 @@ vmap K k
 nmap K K<CR>
 
 " ---- shortcuts ----
-function! s:CPPMacroAbbreviations()
-    iabbrev #i #include
-    iabbrev #I #include
+function! s:CLangShortcuts()
+    inoremap #in #include
+    if stridx(&ft, "objc", 0) == 0
+        inoremap #im #import
+    endif
 
-    iabbrev #d #define
-    iabbrev #D #define
-
-    iabbrev #e #endif
-    iabbrev #E #endif
-
-    iabbrev #p #pragma
-    iabbrev #P #pragma
+    inoremap #d #define
+    inoremap #e #endif
+    inoremap #p #pragma
 endfunction
 
-autocmd FileType c,cpp,objc,objcpp,c.doxygen,cpp.doxygen,objc.doxygen,objcpp.doxygen call s:CPPMacroAbbreviations()
+let s:CLangFileTypes = [ "c", "cpp", "objc", "objcpp", "c.doxygen",
+                       \ "cpp.doxygen", "objc.doxygen", "objcpp.doxygen" ]
+execute "autocmd FileType " . join(s:CLangFileTypes, ",") . " call s:CLangShortcuts()"
 
 if has("digraph")
     digraph ., 8230        " elipsis (…)
