@@ -31,6 +31,10 @@ if [[ ${ZSH_VERSION//.} -gt 420 ]] ; then
    autoload -Uz url-quote-magic
    zle -N self-insert url-quote-magic
 fi
+
+# TODO(compnerd) figure out which version first included edit-command-line
+autoload -Uz edit-command-line
+zle -N edit-command-line
 # }}}
 
 # {{{ locale
