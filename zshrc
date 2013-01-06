@@ -121,7 +121,7 @@ fi
 # }}}
 
 # {{{ prompt
-PROMPT=$'%{\e[01;32m%}%n@%m %{\e[01;34m%}%1~ %(?..%{\e[01;31m%})%(!.#.$) %{\e[00;00m%}'
+PROMPT='%B%F{green}%n@%m %F{blue}%1~ %(?..%F{red})%(!.#.$) %f%b'
 # }}}
 
 # {{{ history
@@ -155,10 +155,10 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' completer _expand _complete _prefix _correct _match _approximate
 # }}}
 
-# {{{ descriptions
-zstyle ':completion:*:messages' format $'\e[01;35m -- %d -- \e[00;00m'
-zstyle ':completion:*:warnings' format $'\e[01;31m -- No Matches Found -- \e[00;00m'
-zstyle ':completion:*:descriptions' format $'\e[01;33m -- %d -- \e[00;00m'
+# {{{ message formatting
+zstyle ':completion:*:descriptions' format '%B%F{yellow} -- %d -- %f%b'
+zstyle ':completion:*:messages' format '%B%F{blue} -- %d -- %f%b'
+zstyle ':completion:*:warnings' format '%B%F{red} -- No Matches Found -- %f%b'
 # }}}
 
 # {{{ grouping
@@ -192,7 +192,12 @@ zstyle ':completion:*' matcher-list 'm:{A-Z}={a-z}' 'm:{a-z}={A-Z}' 'r:|[-._]=* 
 # }}}
 
 # {{{ menu
-zstyle ':completion:*' menu select=1
+zstyle ':completion:*' menu select
+# }}}
+
+# {{{ completion options
+zstyle ':completion:*:options' descriptions 'yes'
+zstyle ':completion:*:options' auto-descriptions 'yes'
 # }}}
 
 # {{{ process management
