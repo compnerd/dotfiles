@@ -228,12 +228,20 @@ if has("digraph")
     digraph ., 8230        " elipsis (…)
 endif
 
+" ---- files ----
 if !has("unix")
     set viminfo+=n$HOME/.viminfo
 endif
 
-" ---- per host configuration ----
+" ---- commands ----
+if has("user_commands")
+    command! -bang -complete=file -nargs=? W w<bang> <args>
+    command! -bang -complete=file -nargs=? Wq wq<bang> <args>
+    command! -bang -complete=file -nargs=? WQ wq<bang> <args>
+    command! -bang Q q<bang>
+endif
 
+" ---- per host configuration ----
 let s:per_host_configuration = expand("~/.vim/settings")
 if filereadable(s:per_host_configuration)
     execute ":source " . s:per_host_configuration
