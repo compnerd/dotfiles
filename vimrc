@@ -4,6 +4,9 @@
 
 scriptencoding utf-8 " This file is in UTF-8
 
+" ---- language categorisation ----
+let s:CLangFileTypes = [ 'c', 'cpp', 'objc', 'objcpp', 'c.doxygen', 'cpp.doxygen', 'objc.doxygen', 'objcpp.doxygen' ]
+
 " ---- Terminal Setup ----
 if (&term =~ "xterm") && (&termencoding == "")
     set termencoding=utf-8
@@ -221,9 +224,9 @@ function! s:CLangShortcuts()
     inoremap #p #pragma
 endfunction
 
-let s:CLangFileTypes = [ "c", "cpp", "objc", "objcpp", "c.doxygen",
-                       \ "cpp.doxygen", "objc.doxygen", "objcpp.doxygen" ]
-execute "autocmd FileType " . join(s:CLangFileTypes, ",") . " call s:CLangShortcuts()"
+if has("autocmd")
+    execute "autocmd FileType " . join(s:CLangFileTypes, ",") . " call s:CLangShortcuts()"
+endif
 
 if has("digraph")
     digraph ., 8230        " elipsis (…)
