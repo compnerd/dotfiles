@@ -2,7 +2,7 @@
 " Saleem Abdulrasool <compnerd@compnerd.org>
 " vim: set ts=8 sts=4 sw=4 et nowrap:
 
-scriptencoding utf-8 " This file is in UTF-8
+scriptencoding utf-8        " this file is in utf-8
 
 " ---- language categorisation ----
 let s:CLangFileTypes = [ 'c', 'cpp', 'objc', 'objcpp', 'c.doxygen', 'cpp.doxygen', 'objc.doxygen', 'objcpp.doxygen' ]
@@ -13,9 +13,9 @@ if (&term =~ "xterm") && (&termencoding == "")
 endif
 
 " ---- General Setup ----
-set nocompatible            " Don't emulate vi's limitations
+set nocompatible            " don't emulate vi's limitations
 
-set encoding=utf-8          " Default encoding should always be UTF-8
+set encoding=utf-8          " default encoding should always be UTF-8
 
 set tabstop=8               " 8 spaces for tabs
 set shiftwidth=4            " 4 spaces for indenting
@@ -67,9 +67,9 @@ syntax on                   " enable syntax highlighting
 syntax sync fromstart       " parse from the beginning to get accurate syntax highlighting
 
 " ---- Filetypes ----
-filetype on                 " Detect filetype by extensions
-filetype indent on          " Enable indents based on extensions
-filetype plugin on          " Load filetype plugins
+filetype on                 " detect filetype by extensions
+filetype indent on          " enable indents based on extensions
+filetype plugin on          " load filetype plugins
 
 " ---- codetags ----
 if has("autocmd")
