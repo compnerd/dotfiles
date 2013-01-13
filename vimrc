@@ -22,8 +22,6 @@ set shiftwidth=4            " 4 spaces for indenting
 set softtabstop=4           " 4 spaces for indenting
 set smarttab                " tab next line based on current line
 set expandtab               " spaces for tabs
-set autoindent              " automatically indent next line based on current line
-set smartindent             " indent next line based on current line
 
 set backspace=2             " fix backspace behaviour (indent,eol,start)
 
@@ -230,6 +228,24 @@ endif
 
 if has("digraph")
     digraph ., 8230        " elipsis (…)
+endif
+
+" ---- code formatting ----
+set autoindent              " automatically indent based on current line
+
+function! s:CLangFormatting()
+    " use C-like language indentation
+    set cindent
+
+    " tweak comment leaders to align properly
+    set comments=sl:/*,mb:\ *,elx:\ */,://
+
+    " tweak include path handling
+    set path=.,/usr/include,/usr/local/include,src/
+endfunction
+
+if has("autocmd")
+    execute "autocmd FileType " . join(s:CLangFileTypes, ",") . " call s:CLangFormatting()"
 endif
 
 " ---- files ----
