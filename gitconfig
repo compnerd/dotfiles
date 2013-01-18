@@ -27,6 +27,9 @@
     stat = true
     tool = vimdiff
 
+[push]
+    default = simple
+
 [rebase]
     stat = true
     autosquash = true
