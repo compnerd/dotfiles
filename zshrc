@@ -6,24 +6,29 @@
 # }}}
 
 # {{{ shell options
-setopt ALWAYS_TO_END          # goto end of word on completion
-setopt AUTO_CD                # directoy command does cd
-setopt AUTO_PUSHD             # cd uses directory stack
-setopt BASH_AUTO_LIST         # list completions on second tab
-setopt CDABLE_VARS            # cd var works if $var is a directory
-setopt CHASE_DOTS             # resolve .. in cd
-setopt CHASE_LINKS            # resolve symbolic links in cd
-setopt COMPLETE_IN_WORD       # completion works inside words
-setopt CORRECT                # correct spelling of commands
-setopt EXTENDED_GLOB          # use zsh globbing extensions
-setopt INTERACTIVE_COMMENTS   # allow comments in interactive shells
-setopt LIST_ROWS_FIRST        # list completions across
-setopt MAGIC_EQUAL_SUBST      # special expansion after all =
-setopt PUSHD_SILENT           # make pushd quiet
-setopt PROMPT_SUBST           # allow substitutions in the prompt
-setopt SH_WORD_SPLIT          # split non-array variables
+setopt ALWAYS_TO_END            # goto end of word on completion
+setopt AUTO_CD                  # directoy command does cd
+setopt AUTO_PARAM_SLASH         # append trailing slash on directory completions
+setopt AUTO_PUSHD               # cd uses directory stack
+setopt BASH_AUTO_LIST           # list completions on second tab
+setopt CDABLE_VARS              # cd var works if $var is a directory
+setopt CHASE_DOTS               # resolve .. in cd
+setopt CHASE_LINKS              # resolve symbolic links in cd
+setopt COMPLETE_IN_WORD         # completion works inside words
+setopt CORRECT                  # correct spelling of commands
+setopt EXTENDED_GLOB            # use zsh globbing extensions
+setopt FLOW_CONTROL             # disable job control sequences in the editor
+setopt INTERACTIVE_COMMENTS     # allow comments in interactive shells
+setopt LIST_ROWS_FIRST          # list completions across
+setopt MAGIC_EQUAL_SUBST        # special expansion after all =
+setopt PATH_DIRS                # path search commands even with slashes
+setopt PUSHD_SILENT             # make pushd quiet
+setopt PUSHD_IGNORE_DUPS        # make directory stack unique
+setopt PROMPT_SUBST             # allow substitutions in the prompt
+setopt SH_WORD_SPLIT            # split non-array variables
 
-unsetopt NO_MATCH             # dont error on no glob matches
+unsetopt CASE_GLOB              # case-insensitive globbing
+unsetopt NO_MATCH               # dont error on no glob matches
 # }}}
 
 # {{{ extensions
@@ -129,18 +134,20 @@ export HISTSIZE=1000
 export SAVEHIST=1000
 export HISTFILE="${HOME}/.zsh/.${HOST}-history"
 
-setopt SHARE_HISTORY
-setopt HIST_IGNORE_SPACE
-setopt HIST_REDUCE_BLANKS
-setopt INC_APPEND_HISTORY
-setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_FCNTL_LOCK          # use fcntl to perform file locking
+setopt HIST_IGNORE_ALL_DUPS     # ignore all duplicates in history
+setopt HIST_IGNORE_SPACE        # elide space prefixed commands from history
+setopt HIST_REDUCE_BLANKS       # remove superfluous blanks in the commands
+setopt INC_APPEND_HISTORY       # incremental appending to history
+setopt SHARE_HISTORY            # merge saved history and command history
 
 unsetopt HIST_BEEP
 unsetopt EXTENDED_HISTORY
 # }}}
 
 # {{{ completion
-autoload -Uz compinit ; compinit -d "${HOME}/.zsh/.${HOST}-zcompdump"
+autoload -Uz compinit
+compinit -d "${HOME}/.zsh/.${HOST}-zcompdump"
 
 # {{{ caching
 zstyle ':completion:*' use-cache on
@@ -168,7 +175,7 @@ zstyle ':completion:*:matches' group 'yes'
 
 # {{{ ignored completion
 # commands that are not present
-zstyle ':completion:*:functions' ignored-patterns '_*'
+zstyle ':completion:*:functions' ignored-patterns '(_*|pre(cmd|exec))'
 
 # prevent parameter resuggestion
 zstyle ':completion:*:ls:*' ignore-line yes
@@ -196,7 +203,7 @@ zstyle ':completion:*' menu select
 # }}}
 
 # {{{ completion options
-zstyle ':completion:*:options' descriptions 'yes'
+zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*:options' auto-descriptions 'yes'
 # }}}
 
@@ -223,7 +230,7 @@ __git_files() { _wanted files expl 'local files' _files ; }
 # {{{ watch
 watch=( all )
 export LOGCHECK=30
-export WATCHFMT=$'\e[01;36m'" -- %n@%m has %(a.Logged In.Logged out) --"$'\e[00;00m'
+export WATCHFMT=$'\e[01;36m'" -- %n@%m %a %l from %M --"$'\e[00;00m'
 # }}}
 
 # {{{ directory hashes
