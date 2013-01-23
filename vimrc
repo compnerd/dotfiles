@@ -218,8 +218,11 @@ function! s:CLangShortcuts()
     endif
 
     inoremap #d #define
-    inoremap #e #endif
+    inoremap #els #else
+    inoremap #eli #elif
+    inoremap #en #endif
     inoremap #p #pragma
+    inoremap #u #undef
 endfunction
 
 if has("autocmd")
