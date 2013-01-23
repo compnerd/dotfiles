@@ -75,7 +75,7 @@ if has("autocmd")
     autocmd syntax * syntax keyword hHack HACK containedin=.*Comment | highlight link hHack hack
 
     autocmd colorscheme * highlight todo gui=bold guibg=NONE guifg=#eeee00 cterm=bold ctermbg=NONE ctermfg=yellow
-    autocmd colorscheme * highlight note gui=bold guibg=NONE guifg=#00ee00 cterm=bold ctermbg=NONE ctermfg=green
+    autocmd colorscheme * highlight note gui=bold guibg=NONE guifg=#009900 cterm=bold ctermbg=NONE ctermfg=green
     autocmd colorscheme * highlight hack gui=bold guibg=NONE guifg=#ee0000 cterm=bold ctermbg=NONE ctermfg=red
 endif
 
