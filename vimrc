@@ -241,7 +241,7 @@ function! s:CLangFormatting()
     set comments=sl:/*,mb:\ *,elx:\ */,://
 
     " tweak include path handling
-    set path=.,/usr/include,/usr/local/include,src/
+    set path=.,/usr/include,/usr/local/include,,src/
 endfunction
 
 if has("autocmd")
