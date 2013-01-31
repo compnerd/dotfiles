@@ -5,7 +5,8 @@
 scriptencoding utf-8        " this file is in utf-8
 
 " ---- language categorisation ----
-let s:CLangFileTypes = [ 'c', 'cpp', 'objc', 'objcpp', 'c.doxygen', 'cpp.doxygen', 'objc.doxygen', 'objcpp.doxygen' ]
+let s:CLangFileTypes = [ 'c', 'cpp', 'objc', 'objcpp', 'c.doxygen',
+                       \ 'cpp.doxygen', 'objc.doxygen', 'objcpp.doxygen' ]
 
 " ---- Terminal Setup ----
 if (&term =~ "xterm") && (&termencoding == "")
@@ -71,12 +72,18 @@ filetype plugin on          " load filetype plugins
 
 " ---- codetags ----
 if has("autocmd")
-    autocmd syntax * syntax keyword hNote NOTE containedin=.*Comment | highlight link hNote note
-    autocmd syntax * syntax keyword hHack HACK containedin=.*Comment | highlight link hHack hack
+    autocmd syntax * syntax keyword hNote NOTE containedin=.*Comment
+    highlight link hNote note
 
-    autocmd colorscheme * highlight todo gui=bold guibg=NONE guifg=#eeee00 cterm=bold ctermbg=NONE ctermfg=yellow
-    autocmd colorscheme * highlight note gui=bold guibg=NONE guifg=#009900 cterm=bold ctermbg=NONE ctermfg=green
-    autocmd colorscheme * highlight hack gui=bold guibg=NONE guifg=#ee0000 cterm=bold ctermbg=NONE ctermfg=red
+    autocmd syntax * syntax keyword hHack HACK containedin=.*Comment
+    highlight link hHack hack
+
+    autocmd colorscheme * highlight todo gui=bold guibg=NONE guifg=#eeee00
+                                       \ cterm=bold ctermbg=NONE ctermfg=yellow
+    autocmd colorscheme * highlight note gui=bold guibg=NONE guifg=#009900
+                                       \ cterm=bold ctermbg=NONE ctermfg=green
+    autocmd colorscheme * highlight hack gui=bold guibg=NONE guifg=#ee0000
+                                       \ cterm=bold ctermbg=NONE ctermfg=red
 endif
 
 " ---- Colour Schemes ----
