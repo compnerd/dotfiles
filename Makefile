@@ -1,7 +1,7 @@
 # vim : set ft=make noet sw=8 sts=8 ts=8 :
 # Copyright © 2011 Saleem Abdulrasool <compnerd@compnerd.org>
 
-DOTFILES    := bashrc bash_profile gitconfig gvimrc tmux.conf vimrc zshrc
+DOTFILES    := bashrc bash_profile gitconfig gitignore gvimrc tmux.conf vimrc zshrc
 
 GITHUB_USER ?= compnerd
 GITHUB_REPO ?= dotfiles

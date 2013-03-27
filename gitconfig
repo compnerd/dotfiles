@@ -17,6 +17,9 @@
 [color]
     ui = auto
 
+[core]
+    excludesfile = ~/.gitignore
+
 [diff]
     renames = copy
 
@@ -41,11 +44,14 @@
 [sendemail]
     chainreplyto = true
 
-[url "git@github.com:"]
-    insteadof = github:
+[url "git://git.fedorahosted.org/"]
+    insteadof = fedora:
 
 [url "git://anongit.freedesktop.org/"]
     insteadof = freedesktop:
+
+[url "git@github.com:"]
+    insteadof = github:
 
 [url "git://sourceware.org/git/"]
     insteadof = sourceware:
