@@ -246,6 +246,7 @@ set autoindent              " automatically indent based on current line
 function! s:CLangFormatting()
     " use C-like language indentation
     set cindent
+    set cinoptions=:0
 
     " tweak comment leaders to align properly
     set comments=sl:/*,mb:\ *,elx:\ */,://
