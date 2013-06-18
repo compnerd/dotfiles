@@ -255,7 +255,11 @@ function! s:CLangFormatting()
     set path=.,/usr/include,/usr/local/include,,src/
 
     " Use :GNUFormat to setup formatting behaviour amenable to GNU style
-    command GNUFormat :setlocal cinoptions={s,>2s noexpandtab shiftwidth=2 tabstop=8
+    command! GNUFormat :setlocal cinoptions=>2s,n-1s,{s,^-1s,:1s,=1s,g0,h1s,t0,+1s,(0,u0,w1,m1
+                               \ noexpandtab
+                               \ shiftwidth=2
+                               \ softtabstop=2
+                               \ tabstop=8
 endfunction
 
 if has("autocmd")
