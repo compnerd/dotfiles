@@ -1,12 +1,1 @@
-#!/bin/sh
-# vim: set ft=sh ts=3 sts=3 sw=3 :
-# development environment
-
-if [[ -f ${HOME}/.pythonrc ]] ; then
-   export PYTHONSTARTUP=${HOME}/.pythonrc
-fi
-
-if [[ -d ${HOME}/.git ]] ; then
-   export GIT_EXEC_PATH=$(GIT_EXEC_PATH= git --exec-path):${HOME}/.git
-fi
-
+../shell/development

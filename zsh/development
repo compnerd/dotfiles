@@ -1,6 +1,1 @@
-# development.sh
-# Helpers aliases and environment variables for development
-
-export PYTHONSTARTUP="${HOME}/.pythonrc"
-
-# vim: ft=sh nowrap:
+../shell/development
