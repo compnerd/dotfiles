@@ -260,6 +260,14 @@ function! s:CLangFormatting()
                                \ shiftwidth=2
                                \ softtabstop=2
                                \ tabstop=8
+
+    " Use :LLVMFormat to setup formatting behaviour ammenable to LLVM style
+    command! LLVMFormat :setlocal cinoptions=:0,g0,(0,Ws,l1
+                                \ expandtab
+                                \ shiftwidth=2
+                                \ softtabstop=2
+                                \ tabstop=8
+    " ) -- fix syntax highlighting
 endfunction
 
 if has("autocmd")
