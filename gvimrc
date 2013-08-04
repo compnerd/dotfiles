@@ -7,7 +7,7 @@ scriptencoding utf-8
 set guioptions=aegi
 set guicursor=a:ver1
 
-set columns=140
+set columns=89
 set lines=50
 
 if has("unix")
