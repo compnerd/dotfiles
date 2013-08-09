@@ -1,0 +1,19 @@
+#!/usr/bin/zsh
+# Copyright © 2013 Saleem Abdulrasool <compnerd@compnerd.org>
+# vim: set et ft=sh sts=2 sw=2 ts=8 :
+
+function zle-keymap-select {
+  case ${KEYMAP} in
+  vicmd)
+    POSTDISPLAY=$'\n -- command mode --'
+    region_highlight=( "${#BUFFER} 32 fg=red,bold" )
+  ;;
+  *)
+    POSTDISPLAY=
+    region_highlight=( )
+  ;;
+  esac
+}
+
+zle -N zle-keymap-select
+
