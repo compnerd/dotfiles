@@ -1,0 +1,7 @@
+#!/bin/sh
+# vim: set et ft=sh ts=8 sts=2 sw=2 :
+# OS X environment
+
+alias gvim='mvim -g'
+alias vim='mvim'
+
