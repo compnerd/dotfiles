@@ -274,6 +274,8 @@ if has("autocmd")
     execute "autocmd FileType " . join(s:CLangFileTypes, ",") . " call s:CLangFormatting()"
 endif
 
+autocmd FileType cmake setl cinoptions=(0 expandtab shiftwidth=2 softtabstop=2
+
 " ---- files ----
 if !has("unix")
     set viminfo+=n$HOME/.viminfo
