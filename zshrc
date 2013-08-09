@@ -57,7 +57,7 @@ Darwin|FreeBSD)
     ;;
 esac
 
-if [[ -n "$(type -p dircolors)" ]] ; then
+if type -p dircolors >/dev/null ; then
     eval $(dircolors -b $([[ -f /etc/DIR_COLORS ]] && echo "/etc/DIR_COLORS"))
 fi
 # }}}
@@ -93,7 +93,7 @@ alias ping='ping -c4'
 
 alias info='info --vi-keys'
 
-if [[ -n "$(type -p hilite)" ]] ; then
+if type -p hilite >/dev/null ; then
    alias make='hilite make'
    alias scons='hilite scons'
 fi
