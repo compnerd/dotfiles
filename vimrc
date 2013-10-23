@@ -289,6 +289,9 @@ if has("user_commands")
     command! -bang Q q<bang>
 endif
 
+" make pasting into ex mode more reasonable
+cnoremap <c-v> <c-r>*
+
 " ---- per host configuration ----
 let s:per_host_configuration = expand("~/.vim/settings")
 if filereadable(s:per_host_configuration)
