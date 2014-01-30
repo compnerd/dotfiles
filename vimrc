@@ -281,6 +281,9 @@ if !has("unix")
     set viminfo+=n$HOME/.viminfo
 endif
 
+" enable spellchecking in git commit messages by default
+autocmd FileType gitcommit setl spell
+
 " ---- commands ----
 if has("user_commands")
     command! -bang -complete=file -nargs=? W w<bang> <args>
