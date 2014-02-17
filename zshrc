@@ -79,15 +79,22 @@ alias cd..='cd ..'
 
 case $(uname -s) in
 Darwin)
+  alias df='df -h'
+  alias du='du -h'
   alias ls='ls -G'
 ;;
-*)
+Linux)
+  alias df='df --human-readable'
+  alias du='du --human-readable'
   alias ls='ls --human-readable --color=auto'
+;;
+OpenBSD)
+  alias df='df -h'
+  alias du='du -h'
+  alias ls='ls -h'
 ;;
 esac
 
-alias df='df --human-readable'
-alias du='du --human-readable'
 
 alias ping='ping -c4'
 
