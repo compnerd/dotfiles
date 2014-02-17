@@ -33,8 +33,8 @@ unsetopt NO_MATCH               # dont error on no glob matches
 
 # {{{ extensions
 if [[ ${ZSH_VERSION//.} -gt 420 ]] ; then
-   autoload -Uz url-quote-magic
-   zle -N self-insert url-quote-magic
+  autoload -Uz url-quote-magic
+  zle -N self-insert url-quote-magic
 fi
 
 # TODO(compnerd) figure out which version first included edit-command-line
@@ -52,21 +52,21 @@ ulimit -c 0
 # {{{ colours
 case $(uname -s) in
 Darwin|FreeBSD)
-    export CLICOLOR=yes
-    export LSCOLORS=Exfxcxdxbxegedabagacad
-    ;;
+  export CLICOLOR=yes
+  export LSCOLORS=Exfxcxdxbxegedabagacad
+;;
 esac
 
 if type -p dircolors >/dev/null ; then
-    eval $(dircolors -b $([[ -f /etc/DIR_COLORS ]] && echo "/etc/DIR_COLORS"))
+  eval $(dircolors -b $([[ -f /etc/DIR_COLORS ]] && echo "/etc/DIR_COLORS"))
 fi
 # }}}
 
 # {{{ terminal
 case "${TERM}" in
-   xterm*)
-      ( infocmp xterm-256color &> /dev/null ) && export TERM=xterm-256color
-   ;;
+xterm*)
+  ( infocmp xterm-256color &> /dev/null ) && export TERM=xterm-256color
+;;
 esac
 # }}}
 
@@ -79,11 +79,11 @@ alias cd..='cd ..'
 
 case $(uname -s) in
 Darwin)
-    alias ls='ls -G'
-    ;;
+  alias ls='ls -G'
+;;
 *)
-    alias ls='ls --human-readable --color=auto'
-    ;;
+  alias ls='ls --human-readable --color=auto'
+;;
 esac
 
 alias df='df --human-readable'
@@ -94,8 +94,8 @@ alias ping='ping -c4'
 alias info='info --vi-keys'
 
 if type -p hilite >/dev/null ; then
-   alias make='hilite make'
-   alias scons='hilite scons'
+  alias make='hilite make'
+  alias scons='hilite scons'
 fi
 
 [[ -n "$(type -p time)" ]] && alias time='command time'
@@ -121,7 +121,7 @@ bindkey -M viins '' history-incremental-search-forward
 
 # remap Caps Lock (0x3A) to Escape
 if [[ ${TERM} == linux ]] ; then
-   ( echo -e $(dumpkeys | grep -i keymaps ; echo \\nkeycode 58 = Escape) | loadkeys - ) > /dev/null 2>&1
+  ( echo -e $(dumpkeys | grep -i keymaps ; echo \\nkeycode 58 = Escape) | loadkeys - ) > /dev/null 2>&1
 fi
 # }}}
 
@@ -235,23 +235,23 @@ export WATCHFMT=$'\e[01;36m'" -- %n@%m %a %l from %M --"$'\e[00;00m'
 
 # {{{ directory hashes
 if [[ -d "${HOME}/sandbox" ]] ; then
-   hash -d sandbox="${HOME}/sandbox"
+  hash -d sandbox="${HOME}/sandbox"
 fi
 
 if [[ -d "${HOME}/work" ]] ; then
-   hash -d work="${HOME}/work"
+  hash -d work="${HOME}/work"
 
-   for dir in "${HOME}"/work/*(N-/) ; do
-      hash -d $(basename "${dir}")="${dir}"
-   done
+  for dir in "${HOME}"/work/*(N-/) ; do
+    hash -d $(basename "${dir}")="${dir}"
+  done
 fi
 # }}}
 
 # {{{ per host configuration
 if [[ -d "${HOME}/.zsh" ]] ; then
-   for file in "${HOME}"/.zsh/*(N.x:t) ; do
-      source "${HOME}/.zsh/${file}"
-   done
+  for file in "${HOME}"/.zsh/*(N.x:t) ; do
+    source "${HOME}/.zsh/${file}"
+  done
 fi
 # }}}
 
