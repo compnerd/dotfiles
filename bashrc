@@ -4,7 +4,7 @@
 
 # {{{ ensure interactive mode
 if [[ $- != *i* ]] ; then
-   return
+  return
 fi
 # }}}
 
@@ -27,21 +27,21 @@ ulimit -c 0
 # {{{ colours
 case $(uname -s) in
 Darwin|FreeBSD)
-    export CLICOLOR=yes
-    export LSCOLORS=Exfxcxdxbxegedabagacad
-    ;;
+  export CLICOLOR=yes
+  export LSCOLORS=Exfxcxdxbxegedabagacad
+;;
 esac
 
 if type -p dircolors >/dev/null ; then
-    eval $(dircolors -b $([[ -f /etc/DIR_COLORS ]] && echo "/etc/DIR_COLORS"))
+  eval $(dircolors -b $([[ -f /etc/DIR_COLORS ]] && echo "/etc/DIR_COLORS"))
 fi
 # }}}
 
 # {{{ terminal
 case "${TERM}" in
-   xterm*)
-      ( infocmp xterm-256color &> /dev/null ) && export TERM=xterm-256color
-   ;;
+xterm*)
+  ( infocmp xterm-256color &> /dev/null ) && export TERM=xterm-256color
+;;
 esac
 # }}}
 
@@ -54,11 +54,11 @@ alias cd..='cd ..'
 
 case $(uname -s) in
 Darwin|FreeBSD)
-    alias ls='ls -G'
-    ;;
+  alias ls='ls -G'
+;;
 *)
-    alias ls='ls --human-readable --color=auto'
-    ;;
+  alias ls='ls --human-readable --color=auto'
+;;
 esac
 
 alias df='df --human-readable'
@@ -69,8 +69,8 @@ alias ping='ping -c4'
 alias info='info --vi-keys'
 
 if type -p hilite >/dev/null ; then
-   alias make='hilite make'
-   alias scons='hilite scons'
+  alias make='hilite make'
+  alias scons='hilite scons'
 fi
 # }}}
 
@@ -82,20 +82,20 @@ bind C-p:reverse-search-history
 
 # remap Caps Lock (0x3A) to Escape
 if [[ ${TERM} == linux ]] ; then
-   ( echo -e $(dumpkeys | grep -i keymaps ; echo \\nkeycode 58 = Escape) | loadkeys - ) > /dev/null 2>&1
+  ( echo -e $(dumpkeys | grep -i keymaps ; echo \\nkeycode 58 = Escape) | loadkeys - ) > /dev/null 2>&1
 fi
 # }}}
 
 # {{{ prompt
 _ps_retval_colour_f()
 {
-   if [[ ${1} -eq 0 ]] ; then
-      echo -e "\033[01;34m"
-   else
-      echo -e "\033[01;31m"
-   fi
+  if [[ ${1} -eq 0 ]] ; then
+    echo -e "\033[01;34m"
+  else
+    echo -e "\033[01;31m"
+  fi
 
-   return ${1}
+  return ${1}
 }
 
 export PS1='\[\033[01;32m\]\u@\h \[\033[01;34m\]\w \[$(_ps_retval_colour_f $?)\]$ \[\033[00;00m\]'
@@ -109,11 +109,11 @@ export HISTFILE="${HOME}/.bash/.${HOSTNAME}-history"
 
 # {{{ per host configuration
 if [[ -d "${HOME}/.bash" ]] ; then
-   for file in "${HOME}/.bash"/* ; do
-      if [[ -x "${file}" ]] ; then
-         source "${file}"
-      fi
-   done
+  for file in "${HOME}/.bash"/* ; do
+    if [[ -x "${file}" ]] ; then
+      source "${file}"
+    fi
+  done
 fi
 # }}}
 
