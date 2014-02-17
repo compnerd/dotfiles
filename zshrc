@@ -78,7 +78,7 @@ export GREP_OPTIONS="--directories=skip --color=auto --exclude='.*.sw*' --exclud
 alias cd..='cd ..'
 
 case $(uname -s) in
-Darwin)
+Darwin|FreeBSD)
   alias df='df -h'
   alias du='du -h'
   alias ls='ls -G'
