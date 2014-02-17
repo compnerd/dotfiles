@@ -8,10 +8,16 @@ GITHUB_REPO ?= dotfiles
 
 GITHUB      := https://github.com/$(GITHUB_USER)/$(GITHUB_REPO)/raw/master/$(strip $(1))
 
+SYSTEM      := $(shell uname -s)
+
 all : $(DOTFILES) ;
 
 $(HOME)/.% : %
+ifeq ($(SYSTEM),$(filter $(SYSTEM),OpenBSD FreeBSD NetBSD DragonFlyBSD))
+	install -C -b -B~ -m 0644 $? $@
+else
 	install --preserve-timestamps --backup --mode 0644 $? $@
+endif
 
 install-% : $(HOME)/.% ;
 
