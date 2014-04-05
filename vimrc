@@ -259,8 +259,16 @@ function! s:CLangFormatting()
   command! LLVMFormat :setlocal cinoptions=:0,g0,(0,Ws,l1 expandtab shiftwidth=2 softtabstop=2 tabstop=8
 endfunction
 
+function! s:AsmFormatting()
+  " use 8-space indenting, hard tabs in assembly
+  setlocal noexpandtab
+  setlocal shiftwidth=8
+  setlocal softtabstop=8
+endfunction
+
 if has("autocmd")
   execute "autocmd FileType " . join(s:CLangFileTypes, ",") . " call s:CLangFormatting()"
+  execute "autocmd FileType asm call s:AsmFormatting()"
 endif
 
 autocmd FileType cmake setl cinoptions=(0 expandtab shiftwidth=2 softtabstop=2
