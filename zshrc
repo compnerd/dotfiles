@@ -87,6 +87,11 @@ Linux)
   alias df='df --human-readable'
   alias du='du --human-readable'
   alias ls='ls --human-readable --color=auto'
+
+  if type -p xclip >/dev/null ; then
+    alias pbcopy='xclip -selection clipboard'
+    alias pbpaste='xclip -selection clipboard -o'
+  fi
 ;;
 OpenBSD)
   alias df='df -h'
