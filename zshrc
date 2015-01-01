@@ -70,10 +70,6 @@ xterm*)
 esac
 # }}}
 
-# {{{ GNU environment options
-export GREP_OPTIONS="--directories=skip --color=auto --exclude='.*.sw*' --exclude-dir='.git' --exclude-dir='.svn'"
-# }}}
-
 # {{{ aliases
 alias cd..='cd ..'
 
@@ -100,6 +96,7 @@ OpenBSD)
 ;;
 esac
 
+alias grep="grep --directories=skip --color=auto --exclude='.*.sw*' --exclude-dir='.git' --exclude-dir='.svn'"
 
 alias ping='ping -c4'
 
