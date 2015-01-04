@@ -71,7 +71,7 @@ OpenBSD)
 ;;
 esac
 
-alias grep="grep --directories=skip --color=auto --exclude='.*.svn' --exclude-dir='.git' --exclude-dir='.svn'"
+alias grep="grep --directories=skip --color=auto --exclude-dir='.git' --exclude='.*.svn' --exclude='.*.sw?'"
 
 alias ping='ping -c4'
 
