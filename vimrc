@@ -104,9 +104,9 @@ fun! LoadColourScheme(schemes)
 endfun
 
 if has("gui_running")
-  call LoadColourScheme("hybrid:jellybeans:xoria256:wombat256:lucius:inkpot")
+  call LoadColourScheme("spacegray:hybrid:jellybeans:molokai:xoria256:inkpot")
 elseif (&t_Co == 256)
-  call LoadColourScheme("hybrid:twilight256:xoria256:wombat256:lucius:inkpot")
+  call LoadColourScheme("spacegray:hybrid:jellybeans:molokai:xoria256:inkpot")
 elseif (&t_Co == 88)
   call LoadColourScheme("lucius:moria:inkpot")
 else
