@@ -88,6 +88,7 @@ set -o vi
 
 bind Space:magic-space
 bind C-p:reverse-search-history
+bind C-n:forward-search-history
 
 stty werase undef
 bind C-w:unix-filename-rubout
