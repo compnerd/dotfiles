@@ -278,8 +278,9 @@ if !has("unix")
   set viminfo+=n$HOME/.viminfo
 endif
 
-" enable spellchecking in git commit messages by default
+" enable spellchecking in git/svn commit messages by default
 autocmd FileType gitcommit setlocal spell
+autocmd FileTYpe svn setlocal spell
 
 " ---- commands ----
 if has("user_commands")
