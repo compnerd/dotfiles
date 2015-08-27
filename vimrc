@@ -271,7 +271,7 @@ if has("autocmd")
   execute "autocmd FileType asm call s:AsmFormatting()"
 endif
 
-autocmd FileType cmake setl cinoptions=(0 expandtab shiftwidth=2 softtabstop=2
+autocmd FileType cmake setlocal cinoptions=(0 expandtab shiftwidth=2 softtabstop=2
 
 " ---- files ----
 if !has("unix")
@@ -279,7 +279,7 @@ if !has("unix")
 endif
 
 " enable spellchecking in git commit messages by default
-autocmd FileType gitcommit setl spell
+autocmd FileType gitcommit setlocal spell
 
 " ---- commands ----
 if has("user_commands")
