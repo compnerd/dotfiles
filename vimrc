@@ -7,6 +7,7 @@ scriptencoding utf-8        " this file is in utf-8
 " ---- language categorisation ----
 let s:CLangFileTypes = [ 'c', 'cpp', 'objc', 'objcpp', 'c.doxygen',
                        \ 'cpp.doxygen', 'objc.doxygen', 'objcpp.doxygen' ]
+let s:CPlusPlusFileTypes = [ 'cpp', 'objcpp', 'cpp.doxygen', 'objcpp.doxygen' ]
 
 " ---- Terminal Setup ----
 if (&term =~ "xterm") && (&termencoding == "")
@@ -232,6 +233,10 @@ endfunction
 
 if has("autocmd")
   execute "autocmd FileType " . join(s:CLangFileTypes, ",") . " call s:CLangShortcuts()"
+endif
+
+if has("autocmd")
+  execute "autocmd FileType " . join(s:CPlusPlusFileTypes, ",") . " set matchpairs=(:),{:},[:],<:>"
 endif
 
 if has("digraph")
