@@ -295,8 +295,11 @@ if has("user_commands")
   command! -bang Q q<bang>
 endif
 
-" make pasting into ex mode more reasonable
+" make pasting into ex-mode more reasonable
 cnoremap <c-v> <c-r>*
+" support emacs-like bindings in ex-mode, since vi-style is not really possible
+cnoremap <c-a> <home>
+cnoremap <c-e> <end>
 
 " ---- per host configuration ----
 let s:per_host_configuration = expand("~/.vim/settings")
