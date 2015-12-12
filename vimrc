@@ -181,6 +181,10 @@ autocmd BufReadPost *
       \   exe "normal g'\"" |
       \ endif
 
+" ---- Splits ----
+" resize splits when windows are resized
+autocmd VimResized * wincmd =
+
 " ---- Text Width Marker ----
 if (v:version >= 703)
   set colorcolumn=+1
