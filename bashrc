@@ -16,7 +16,7 @@ shopt -s histappend
 
 # {{{ locale
 eval unset ${!LC_*} LANG
-export LANG=en_US.utf8
+export LANG=en_US.UTF-8
 export LC_COLATE=C
 # }}}
 
