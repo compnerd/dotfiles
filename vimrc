@@ -86,8 +86,6 @@ if has("autocmd")
 endif
 
 " ---- Colour Schemes ----
-set background=dark         " prefer dark backgrounds
-
 " shamelessly stolen from Ciaran McCreesh <ciaran.mccreesh@gmail.com>
 fun! LoadColourScheme(schemes)
   let l:schemes = a:schemes . ":"
@@ -113,6 +111,10 @@ elseif (&t_Co == 88)
 else
   call LoadColourScheme("elflord:zellner")
 endif
+
+" NOTE(compnerd) set the background *after* loading the colourscheme to ensure
+" that it is not reset.
+set background=dark         " prefer dark backgrounds
 
 " ---- Trailing/Bleeding Whitespace ----
 
