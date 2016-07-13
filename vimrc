@@ -284,6 +284,23 @@ endif
 
 autocmd FileType cmake setlocal cinoptions=(0 expandtab shiftwidth=2 softtabstop=2
 
+function! s:ConfigureMacros()
+  let l:clang_format_languages = ['c', 'cpp', 'objc', 'objcpp', 'java', 'javascript', 'protobuf']
+
+  let l:plugin_directory = split(&runtimepath, ',')[0]
+  let l:clang_format = l:plugin_directory . "/plugins/clang-format.py"
+
+  if index(l:clang_format_languages, split(&ft, "\m.")[0]) >= 0
+    execute "map <leader>f :pyfile " . l:clang_format . "<cr><cr>"
+    execute "imap <leader>f <c-o>:pyfile " . l:clang_format . "<cr><cr>"
+  else
+    silent! unmap <leader>f
+    silent! iunmap <leader>f
+  endif
+endfunction
+
+autocmd FileType * call s:ConfigureMacros()
+
 " ---- files ----
 if !has("unix")
   set viminfo+=n$HOME/.viminfo
