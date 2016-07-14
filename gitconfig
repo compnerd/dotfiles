@@ -4,6 +4,7 @@
 
 [alias]
     amend = commit --amend
+    fixup = commit --amend --no-edit
     staged = diff --cached
     changes = diff --name-status -r
     diffstat = diff --stat -r
@@ -43,6 +44,9 @@
 
 [sendemail]
     chainreplyto = true
+
+[url "ssh://git@git.exherbo.org/"]
+    insteadof = exherbo:
 
 [url "git://git.fedorahosted.org/"]
     insteadof = fedora:
