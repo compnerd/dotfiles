@@ -195,7 +195,7 @@ endif
 
 " ---- Key Mappings ----
 
-" blackhole register ("_ is hard to type, use the leader instead)
+" blackhole register (_) is hard to type, use the leader instead)
 map <leader>b "_
 
 " line numbers
@@ -261,12 +261,13 @@ function! s:CLangFormatting()
   set comments=sl:/*,mb:\ *,elx:\ */,://
 
   " tweak include path handling
-  set path=.,/usr/include,/usr/local/include,,src/
+  " TODO(compnerd) setup paths for windows
+  set path=.,/usr/local/include,/usr/include,,
 
   " Use :GNUFormat to setup formatting behaviour amenable to GNU style
   command! GNUFormat :setlocal cinoptions=>2s,n-1s,{s,^-1s,:1s,=1s,g0,h1s,t0,+1s,(0,u0,w1,m1 noexpandtab shiftwidth=2 softtabstop=2 tabstop=8
 
-  " Use :LLVMFormat to setup formatting behaviour ammenable to LLVM style
+  " Use :LLVMFormat to setup formatting behaviour amenable to LLVM style
   command! LLVMFormat :setlocal cinoptions=:0,g0,(0,Ws,l1 expandtab shiftwidth=2 softtabstop=2 tabstop=8
 endfunction
 
@@ -288,7 +289,7 @@ function! s:ConfigureMacros()
   let l:clang_format_languages = ['c', 'cpp', 'objc', 'objcpp', 'java', 'javascript', 'protobuf']
 
   let l:plugin_directory = split(&runtimepath, ',')[0]
-  let l:clang_format = l:plugin_directory . "/plugins/clang-format.py"
+  let l:clang_format = l:plugin_directory . "/plugin/clang-format.py"
 
   if index(l:clang_format_languages, split(&ft, "\m.")[0]) >= 0
     execute "map <leader>f :pyfile " . l:clang_format . "<cr><cr>"
@@ -299,7 +300,9 @@ function! s:ConfigureMacros()
   endif
 endfunction
 
-autocmd FileType * call s:ConfigureMacros()
+if has("autocmd")
+  autocmd FileType * call s:ConfigureMacros()
+endif
 
 " ---- files ----
 if !has("unix")
