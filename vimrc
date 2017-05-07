@@ -20,8 +20,8 @@ set nocompatible            " don't emulate vi's limitations
 set encoding=utf-8          " default encoding should always be UTF-8
 
 set tabstop=8               " 8 spaces for tabs
-set shiftwidth=2            " 4 spaces for indenting
-set softtabstop=2           " 4 spaces for indenting
+set shiftwidth=2            " 2 spaces for indenting
+set softtabstop=2           " 2 spaces for indenting
 set smarttab                " tab next line based on current line
 set expandtab               " spaces for tabs
 
