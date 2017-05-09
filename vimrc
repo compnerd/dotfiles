@@ -287,17 +287,26 @@ autocmd FileType cmake setlocal cinoptions=(0 expandtab shiftwidth=2 softtabstop
 
 function! s:ConfigureMacros()
   let l:clang_format_languages = ['c', 'cpp', 'objc', 'objcpp', 'java', 'javascript', 'protobuf']
+  let l:swift_format_languages = ['swift']
 
   let l:plugin_directory = split(&runtimepath, ',')[0]
   let l:clang_format = l:plugin_directory . "/plugin/clang-format.py"
   let l:clang_rename = l:plugin_directory . "/plugin/clang-rename.py"
+  let l:swift_format = l:plugin_directory . "/plugin/swift-format.py"
 
-  if index(l:clang_format_languages, split(&ft, "\m.")[0]) >= 0
+  let l:file_type = split(&ft, "\m.")[0]
+  if index(l:clang_format_languages, file_type) >= 0
     execute "map <leader>f :pyfile " . l:clang_format . "<cr><cr>"
     execute "imap <leader>f <c-o>:pyfile " . l:clang_format . "<cr><cr>"
 
     execute "map <leader>r :pyfile " . l:clang_rename . "<cr><cr>"
     execute "imap <leader>r :pyfile " . l:clang_rename . "<cr><cr>"
+  elseif index(l:swift_format_languages, file_type) >= 0
+    execute "map <leader>f :pyfile " . l:swift_format . "<cr><cr>"
+    execute "imap <leader>f <c-o>:pyfile " . l:swift_format . "<cr><cr>"
+
+    silent! unmap <leader>r
+    silent! iunmap <leader>r
   else
     silent! unmap <leader>f
     silent! iunmap <leader>f
