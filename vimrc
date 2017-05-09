@@ -195,7 +195,7 @@ endif
 
 " ---- Key Mappings ----
 
-" blackhole register (_) is hard to type, use the leader instead)
+" blackhole register (_) is hard to type, use the leader instead
 map <leader>b "_
 
 " line numbers
