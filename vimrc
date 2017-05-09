@@ -222,6 +222,9 @@ nmap <silent> <space>   <C-f>
 vmap K k
 nmap K K<CR>
 
+" ---- extensions ----
+runtime macros/matchit.vim
+
 " ---- shortcuts ----
 function! s:CLangShortcuts()
   inoremap #in #include
