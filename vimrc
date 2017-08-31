@@ -303,7 +303,7 @@ function! s:ConfigureMacros()
     execute "imap <leader>f <c-o>:pyfile " . l:clang_format . "<cr><cr>"
 
     execute "map <leader>r :pyfile " . l:clang_rename . "<cr><cr>"
-    execute "imap <leader>r :pyfile " . l:clang_rename . "<cr><cr>"
+    execute "imap <leader>r <c-o>:pyfile " . l:clang_rename . "<cr><cr>"
   elseif index(l:swift_format_languages, file_type) >= 0
     execute "map <leader>f :pyfile " . l:swift_format . "<cr><cr>"
     execute "imap <leader>f <c-o>:pyfile " . l:swift_format . "<cr><cr>"
