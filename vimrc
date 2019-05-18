@@ -332,6 +332,9 @@ endif
 autocmd FileType gitcommit setlocal spell
 autocmd FileType svn setlocal spell
 
+" associate *.swift with Swift
+autocmd BufRead,BufNewFile *.swift setfiletype=swift
+
 " ---- commands ----
 if has("user_commands")
   command! -bang -complete=file -nargs=? W w<bang> <args>
