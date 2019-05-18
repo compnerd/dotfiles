@@ -330,7 +330,7 @@ endif
 
 " enable spellchecking in git/svn commit messages by default
 autocmd FileType gitcommit setlocal spell
-autocmd FileTYpe svn setlocal spell
+autocmd FileType svn setlocal spell
 
 " ---- commands ----
 if has("user_commands")
