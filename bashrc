@@ -97,6 +97,9 @@ bind C-w:unix-filename-rubout
 if [[ ${TERM} == linux ]] ; then
   ( echo -e $(dumpkeys | grep -i keymaps ; echo \\nkeycode 58 = Escape) | loadkeys - ) > /dev/null 2>&1
 fi
+
+# disable control echo (e.g. ^C)
+stty -ctlecho
 # }}}
 
 # {{{ prompt
