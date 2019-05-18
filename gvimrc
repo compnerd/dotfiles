@@ -15,7 +15,7 @@ if has('gui_macvim')
 elseif has("unix")
    set guifont=Consolas\ 8,Envy\ Code\ R\ 8,Monaco\ 8,Cousine\ 8
 else
-   set guifont=Consolas:h8
+   set guifont=Consolas:h10
 endif
 
 if has('gui_macvim')
