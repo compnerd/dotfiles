@@ -243,14 +243,10 @@ export WATCHFMT=$'\e[01;36m'" -- %n@%m %a %l from %M --"$'\e[00;00m'
 # }}}
 
 # {{{ directory hashes
-if [[ -d "${HOME}/sandbox" ]] ; then
-  hash -d sandbox="${HOME}/sandbox"
-fi
+if [[ -d "${HOME}/SourceCache" ]] ; then
+  hash -d work="${HOME}/SourceCache"
 
-if [[ -d "${HOME}/work" ]] ; then
-  hash -d work="${HOME}/work"
-
-  for dir in "${HOME}"/work/*(N-/) ; do
+  for dir in "${HOME}"/SourceCache/*(N-/) ; do
     hash -d $(basename "${dir}")="${dir}"
   done
 fi
