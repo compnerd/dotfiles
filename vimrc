@@ -103,11 +103,11 @@ fun! LoadColourScheme(schemes)
 endfun
 
 if has("gui_running")
-  call LoadColourScheme("spacegray:babymate256:PaperColor")
+  call LoadColourScheme("xcodedark:spacegray")
 elseif (&t_Co == 256)
-  call LoadColourScheme("spacegray:PaperColor")
+  call LoadColourScheme("xcodedark:spacegray")
 elseif (&t_Co == 88)
-  call LoadColourScheme("lucius:moria:inkpot")
+  call LoadColourScheme("inkpot")
 else
   call LoadColourScheme("elflord:zellner")
 endif
