@@ -244,7 +244,7 @@ export WATCHFMT=$'\e[01;36m'" -- %n@%m %a %l from %M --"$'\e[00;00m'
 
 # {{{ directory hashes
 if [[ -d "${HOME}/SourceCache" ]] ; then
-  hash -d work="${HOME}/SourceCache"
+  hash -d SourceCache="${HOME}/SourceCache"
 
   for dir in "${HOME}"/SourceCache/*(N-/) ; do
     hash -d $(basename "${dir}")="${dir}"
