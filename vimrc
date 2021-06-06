@@ -298,18 +298,33 @@ function! s:ConfigureMacros()
   let l:swift_format = l:plugin_directory . "/plugin/swift-format.py"
 
   let l:file_type = split(&ft, "\m.")[0]
-  if index(l:clang_format_languages, file_type) >= 0
-    execute "map <leader>f :pyfile " . l:clang_format . "<cr><cr>"
-    execute "imap <leader>f <c-o>:pyfile " . l:clang_format . "<cr><cr>"
+  if has('python') || has('python3')
+    if index(l:clang_format_languages, file_type) >= 0
+      if has('python3')
+        execute "map <leader>f :py3file " . l:clang_format . "<cr><cr>"
+        execute "imap <leader>f <c-o>:py3file " . l:clang_format . "<cr><cr>"
 
-    execute "map <leader>r :pyfile " . l:clang_rename . "<cr><cr>"
-    execute "imap <leader>r <c-o>:pyfile " . l:clang_rename . "<cr><cr>"
-  elseif index(l:swift_format_languages, file_type) >= 0
-    execute "map <leader>f :pyfile " . l:swift_format . "<cr><cr>"
-    execute "imap <leader>f <c-o>:pyfile " . l:swift_format . "<cr><cr>"
+        execute "map <leader>r :py3file " . l:clang_rename . "<cr><cr>"
+        execute "imap <leader>r <c-o>:py3file " . l:clang_rename . "<cr><cr>"
+      else
+        execute "map <leader>f :pyfile " . l:clang_format . "<cr><cr>"
+        execute "imap <leader>f <c-o>:pyfile " . l:clang_format . "<cr><cr>"
 
-    silent! unmap <leader>r
-    silent! iunmap <leader>r
+        execute "map <leader>r :pyfile " . l:clang_rename . "<cr><cr>"
+        execute "imap <leader>r <c-o>:pyfile " . l:clang_rename . "<cr><cr>"
+      endif
+    elseif index(l:swift_format_languages, file_type) >= 0
+      if has('python3')
+        execute "map <leader>f :py3file " . l:swift_format . "<cr><cr>"
+        execute "imap <leader>f <c-o>:py3file " . l:swift_format . "<cr><cr>"
+      else
+        execute "map <leader>f :pyfile " . l:swift_format . "<cr><cr>"
+        execute "imap <leader>f <c-o>:pyfile " . l:swift_format . "<cr><cr>"
+      endif
+
+      silent! unmap <leader>r
+      silent! iunmap <leader>r
+    endif
   else
     silent! unmap <leader>f
     silent! iunmap <leader>f
