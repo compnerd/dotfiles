@@ -10,7 +10,7 @@ let s:CLangFileTypes = [ 'c', 'cpp', 'objc', 'objcpp', 'c.doxygen',
 let s:CPlusPlusFileTypes = [ 'cpp', 'objcpp', 'cpp.doxygen', 'objcpp.doxygen' ]
 
 " ---- Terminal Setup ----
-if (&term =~ "xterm") && (&termencoding == "")
+if &term =~ "xterm" && &termencoding == ""
   set termencoding=utf-8
 endif
 
@@ -51,7 +51,7 @@ set nomodeline              " modelines are insecure, see securemodelines
 
 set textwidth=80            " wrap at 80 character boundary by default
 set formatoptions=tcroqnl   " cf. fo-table
-if (v:version >= 703 && has('patch541'))
+if v:version >= 703 && has('patch541')
   set formatoptions+=j      " strip comment leader when joining lines
 endif
 set linebreak               " display long lines wrapped at word boundaries
@@ -104,9 +104,9 @@ endfun
 
 if has("gui_running")
   call LoadColourScheme("xcodedark:spacegray")
-elseif (&t_Co == 256)
+elseif &t_Co == 256
   call LoadColourScheme("xcodedark:spacegray")
-elseif (&t_Co == 88)
+elseif &t_Co == 88
   call LoadColourScheme("inkpot")
 else
   call LoadColourScheme("elflord:zellner")
@@ -119,14 +119,14 @@ set background=dark         " prefer dark backgrounds
 " ---- Trailing/Bleeding Whitespace ----
 
 " shamelessly stolen from Ciaran McCreesh <ciaran.mccreesh@gmail.com>
-if (&termencoding == "utf-8") || has("gui_running")
-  if (v:version >= 700)
+if &termencoding == "utf-8" || has("gui_running")
+  if v:version >= 700
     set list listchars=tab:»·,trail:·,extends:…,nbsp:‗
   else
     set list listchars=tab:»·,trail:·,extends:…
   endif
 else
-  if (v:version >= 700)
+  if v:version >= 700
     set list listchars=tab:>-,trail:.,extends:>,nbsp:_
   else
     set list listchars=tab:>-,trail:.,extends:>
@@ -139,7 +139,7 @@ set shortmess=aItT
 set statusline=Editing:\ %m%F%r\ %y[%{&ff}][%{&fenc}]\ %=Location:\ Line\ %l/%L,\ Column\ %v\ (%p%%)
 
 " ---- Spell Checking ----
-if (v:version >= 700)
+if v:version >= 700
   set spelllang=en_us       " US English spelling please
 endif
 
@@ -188,7 +188,7 @@ autocmd BufReadPost *
 autocmd VimResized * wincmd =
 
 " ---- Text Width Marker ----
-if (v:version >= 703)
+if v:version >= 703
   set colorcolumn=+1
   highlight ColorColumn ctermbg=237 guibg=#363946
 endif
@@ -206,7 +206,7 @@ nmap <silent> <S-F12> :silent set relativenumber!<CR>
 imap <silent> <S-F12> <C-O>:silent set relativenumber!<CR>
 
 " spell checking
-if (v:version >= 700)
+if v:version >= 700
   nmap <silent> <F10> :silent set spell!<CR>
   imap <silent> <F10> <C-O>:silent set spell!<CR>
 endif
