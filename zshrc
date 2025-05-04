@@ -242,6 +242,10 @@ export LOGCHECK=30
 export WATCHFMT=$'\e[01;36m'" -- %n@%m %a %l from %M --"$'\e[00;00m'
 # }}}
 
+# {{{ pager
+export MANPAGER="vim +MANPAGER --not-a-term -"
+# }}}
+
 # {{{ directory hashes
 if [[ -d "${HOME}/SourceCache" ]] ; then
   hash -d SourceCache="${HOME}/SourceCache"

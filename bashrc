@@ -122,6 +122,10 @@ export HISTIGNORE='bg:fg:history'
 export HISTTIMEFORMAT='%F %T '
 # }}}
 
+# {{{ pager
+export MANPAGER="vim +MANPAGER --not-a-term -"
+# }}}
+
 # {{{ per host configuration
 if [[ -d "${HOME}/.bash" ]] ; then
   for file in "${HOME}/.bash"/* ; do
