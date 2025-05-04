@@ -46,8 +46,6 @@ esac
 # }}}
 
 # {{{ alias
-alias cd..='cd ..'
-
 case $(uname -s) in
 Darwin|FreeBSD)
   alias df='df -h'
