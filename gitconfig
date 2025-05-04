@@ -8,15 +8,24 @@
     changelog = log --stat $(git describe --abbrev=0)..HEAD
     ls-ignored = ls-files --exclude-standard --ignored --others
 
+[apply]
+    whitespace = fix
+
 [branch]
     autosetupmerge = true
     autosetuprebase = always
+    sort = -comitterdate
 
 [core]
+    attributesfile = ~/.gitattributes
+    editor = vim
     excludesfile = ~/.gitignore
+    symlink = true
 
 [diff]
-    renames = copy
+    algorithm = histogram
+    colormoved = plain
+    renames = copies
 
 [help]
     autocorrect = 1
@@ -32,6 +41,7 @@
     stat = true
     autosquash = true
     autostash = true
+    updaterefs = true
 
 [rerere]
     enabled = true
@@ -39,6 +49,9 @@
 
 [sendemail]
     chainreplyto = true
+
+[tag]
+    sort = version:refname
 
 [url "ssh://git@git.exherbo.org/"]
     insteadof = exherbo:
