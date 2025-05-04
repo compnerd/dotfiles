@@ -3,9 +3,6 @@
 # vim: set ft=gitconfig sts=4 sw=4 ts=8 :
 
 [alias]
-    amend = commit --amend
-    fixup = commit --amend --no-edit
-    staged = diff --cached
     changes = diff --name-status -r
     diffstat = diff --stat -r
     changelog = log --stat $(git describe --abbrev=0)..HEAD
@@ -14,9 +11,6 @@
 [branch]
     autosetupmerge = true
     autosetuprebase = always
-
-[color]
-    ui = auto
 
 [core]
     excludesfile = ~/.gitignore
