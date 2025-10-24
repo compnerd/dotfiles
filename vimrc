@@ -155,6 +155,7 @@ autocmd BufReadPost *
       \ endif
 
 " ---- Splits ----
+
 " resize splits when windows are resized
 autocmd VimResized * wincmd =
 
