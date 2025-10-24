@@ -147,28 +147,6 @@ endif
 set fillchars=fold:\        " no fill characters for folds
 let javascript_fold = 1     " enable folding for JavaScript
 
-" ---- Code Indexing (ctags/cscope) ----
-set tags=tags;/             " search for tags in parent directory, recursively
-set showfulltag             " show full tags when doing completion
-set tagrelative             " paths are relative to tag file
-
-if has("cscope")
-  set cscopetag             " search both ctags and cscope
-  set cscopetagorder=1      " check ctags before cscope
-
-  set nocscopeverbose
-  if filereadable("cscope.out")
-    cscope add cscope.out
-  endif
-  set cscopeverbose
-
-  " c -> calls ; d -> definition ; f -> file ; r -> references
-  nmap <leader>cc :cscope find c <C-R>=expand("<cword>")<CR><CR>
-  nmap <leader>cf :cscope find f <C-R>=expand("<cword>")<CR><CR>
-  nmap <leader>cd :cscope find g <C-R>=expand("<cword>")<CR><CR>
-  nmap <leader>cr :cscope find s <C-R>=expand("<cword>")<CR><CR>
-endif
-
 " ---- Restore Cursor Location ----
 autocmd BufReadPost *
       \ if line("'\"") > 0 && line("'\"") <= line("$") |
