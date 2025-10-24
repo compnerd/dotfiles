@@ -16,6 +16,7 @@ endif
 
 " ---- General Setup ----
 set nocompatible            " don't emulate vi's limitations
+set belloff=all             " silence the bell
 
 set encoding=utf-8          " default encoding should always be UTF-8
 
