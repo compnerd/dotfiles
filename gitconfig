@@ -14,7 +14,7 @@
 [branch]
     autosetupmerge = true
     autosetuprebase = always
-    sort = -comitterdate
+    sort = -committerdate
 
 [core]
     attributesfile = ~/.gitattributes
