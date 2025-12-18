@@ -2,6 +2,6 @@
 # Lines that start with '#' are comments.
 
 .DS_Store
-.*.sw[nop]
+.*.sw?
 *~
 
