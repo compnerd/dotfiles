@@ -53,18 +53,5 @@
 [tag]
   sort = version:refname
 
-[url "ssh://git@git.exherbo.org/"]
-  insteadof = exherbo:
-
-[url "git://git.fedorahosted.org/"]
-  insteadof = fedora:
-
-[url "git://anongit.freedesktop.org/"]
-  insteadof = freedesktop:
-
 [url "git@github.com:"]
   insteadof = github:
-
-[url "git://sourceware.org/git/"]
-  insteadof = sourceware:
-
