@@ -104,13 +104,13 @@ fun! LoadColourScheme(schemes)
 endfun
 
 if has("gui_running")
-  call LoadColourScheme("xcodedark:spacegray")
+  call LoadColourScheme("catppuccin:xcodedark:spacegray")
 elseif &t_Co == 256
-  call LoadColourScheme("xcodedark:spacegray")
+  call LoadColourScheme("catppuccin:xcodedark:spacegray")
 elseif &t_Co == 88
-  call LoadColourScheme("inkpot")
+  call LoadColourScheme("inkpot:industry")
 else
-  call LoadColourScheme("elflord:zellner")
+  call LoadColourScheme("industry:unokai")
 endif
 
 " NOTE(compnerd) set the background *after* loading the colourscheme to ensure
