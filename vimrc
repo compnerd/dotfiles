@@ -10,7 +10,7 @@ let s:CLangFileTypes = [ 'c', 'cpp', 'objc', 'objcpp', 'c.doxygen',
 let s:CPlusPlusFileTypes = [ 'cpp', 'objcpp', 'cpp.doxygen', 'objcpp.doxygen' ]
 
 " ---- Terminal Setup ----
-if &term =~ "xterm" && &termencoding == ""
+if (&term =~ "xterm" || &term =~ "win32") && &termencoding == ""
   set termencoding=utf-8
 endif
 
