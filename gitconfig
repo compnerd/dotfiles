@@ -16,6 +16,9 @@
   autosetuprebase = always
   sort = -committerdate
 
+[column]
+  ui = auto
+
 [core]
   attributesfile = ~/.gitattributes
   editor = vim
@@ -25,7 +28,11 @@
 [diff]
   algorithm = histogram
   colormoved = plain
+  mnemonicPrefix = true
   renames = copies
+
+[fetch]
+  prune = true
 
 [help]
   autocorrect = 1
