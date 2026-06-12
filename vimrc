@@ -103,7 +103,11 @@ fun! LoadColourScheme(schemes)
   endwhile
 endfun
 
-if has("gui_running")
+if has('termguicolors')
+  set termguicolors
+endif
+
+if has("gui_running") || has("termguicolors")
   call LoadColourScheme("catppuccin:xcodedark:spacegray")
 elseif &t_Co == 256
   call LoadColourScheme("catppuccin:xcodedark:spacegray")
