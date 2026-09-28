@@ -153,7 +153,15 @@ autocmd VimResized * wincmd =
 
 " ---- Text Width Marker ----
 set colorcolumn=+1
-highlight ColorColumn ctermbg=237 guibg=#363946
+highlight ColorColumn guibg=#363946
+
+if &t_Co >= 256
+  highlight ColorColumn ctermbg=237
+elseif &t_Co >= 16
+  highlight ColorColumn ctermbg=8
+else
+  highlight ColorColumn cterm=reverse
+endif
 
 " ---- Key Mappings ----
 
