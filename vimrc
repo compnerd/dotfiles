@@ -52,9 +52,7 @@ set nomodeline              " modelines are insecure, see securemodelines
 
 set textwidth=80            " wrap at 80 character boundary by default
 set formatoptions=tcroqnl   " cf. fo-table
-if v:version >= 703 && has('patch541')
-  set formatoptions+=j      " strip comment leader when joining lines
-endif
+set formatoptions+=j        " strip comment leader when joining lines
 set linebreak               " display long lines wrapped at word boundaries
 let &showbreak = "↪ "       " continuation character
 
@@ -125,17 +123,9 @@ set background=dark         " prefer dark backgrounds
 
 " shamelessly stolen from Ciaran McCreesh <ciaran.mccreesh@gmail.com>
 if &termencoding == "utf-8" || has("gui_running")
-  if v:version >= 700
-    set list listchars=tab:»·,trail:·,extends:…,nbsp:‗
-  else
-    set list listchars=tab:»·,trail:·,extends:…
-  endif
+  set list listchars=tab:»·,trail:·,extends:…,nbsp:‗
 else
-  if v:version >= 700
-    set list listchars=tab:>-,trail:.,extends:>,nbsp:_
-  else
-    set list listchars=tab:>-,trail:.,extends:>
-  endif
+  set list listchars=tab:>-,trail:.,extends:>,nbsp:_
 endif
 
 " ---- Status Line ----
@@ -144,9 +134,7 @@ set shortmess=aItT
 set statusline=Editing:\ %m%F%r\ %y[%{&ff}][%{&fenc}]\ %=Location:\ Line\ %l/%L,\ Column\ %v\ (%p%%)
 
 " ---- Spell Checking ----
-if v:version >= 700
-  set spelllang=en_us       " US English spelling please
-endif
+set spelllang=en_us         " US English spelling please
 
 " ---- Code Folding ----
 set fillchars=fold:\        " no fill characters for folds
@@ -164,10 +152,8 @@ autocmd BufReadPost *
 autocmd VimResized * wincmd =
 
 " ---- Text Width Marker ----
-if v:version >= 703
-  set colorcolumn=+1
-  highlight ColorColumn ctermbg=237 guibg=#363946
-endif
+set colorcolumn=+1
+highlight ColorColumn ctermbg=237 guibg=#363946
 
 " ---- Key Mappings ----
 
@@ -182,10 +168,8 @@ nmap <silent> <S-F12> :silent set relativenumber!<CR>
 imap <silent> <S-F12> <C-O>:silent set relativenumber!<CR>
 
 " spell checking
-if v:version >= 700
-  nmap <silent> <F10> :silent set spell!<CR>
-  imap <silent> <F10> <C-O>:silent set spell!<CR>
-endif
+nmap <silent> <F10> :silent set spell!<CR>
+imap <silent> <F10> <C-O>:silent set spell!<CR>
 
 " tab-based indentation
 vmap <silent> <tab>     >gv
