@@ -253,9 +253,9 @@ function! s:ConfigureMacros()
   let l:swift_format_languages = ['swift']
 
   let l:plugin_directory = split(&runtimepath, ',')[0]
-  let l:clang_format = l:plugin_directory . "/plugin/clang-format.py"
-  let l:clang_rename = l:plugin_directory . "/plugin/clang-rename.py"
-  let l:swift_format = l:plugin_directory . "/plugin/swift-format.py"
+  let l:clang_format = fnameescape(l:plugin_directory . "/plugin/clang-format.py")
+  let l:clang_rename = fnameescape(l:plugin_directory . "/plugin/clang-rename.py")
+  let l:swift_format = fnameescape(l:plugin_directory . "/plugin/swift-format.py")
 
   let l:file_type = split(&ft, "\m.")[0]
   if has('python') || has('python3')
@@ -327,6 +327,6 @@ cnoremap <c-e> <end>
 " ---- per host configuration ----
 let s:per_host_configuration = expand("~/.vim/settings")
 if filereadable(s:per_host_configuration)
-  execute ":source " . s:per_host_configuration
+  execute ":source " . fnameescape(s:per_host_configuration)
 endif
 
