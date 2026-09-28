@@ -10,7 +10,7 @@ let s:CLangFileTypes = [ 'c', 'cpp', 'objc', 'objcpp', 'c.doxygen',
 let s:CPlusPlusFileTypes = [ 'cpp', 'objcpp', 'cpp.doxygen', 'objcpp.doxygen' ]
 
 " ---- Terminal Setup ----
-if (&term =~ "xterm" || &term =~ "win32") && &termencoding == ""
+if exists("+termencoding") && (&term =~# 'xterm' || &term =~# 'win32') && &termencoding ==# ''
   set termencoding=utf-8
 endif
 
@@ -101,11 +101,11 @@ fun! LoadColourScheme(schemes)
   endwhile
 endfun
 
-if has('termguicolors')
+if exists('+termguicolors')
   set termguicolors
 endif
 
-if has("gui_running") || has("termguicolors")
+if has("gui_running") || exists("+termguicolors")
   call LoadColourScheme("catppuccin:xcodedark:spacegray")
 elseif &t_Co == 256
   call LoadColourScheme("catppuccin:xcodedark:spacegray")
@@ -122,7 +122,7 @@ set background=dark         " prefer dark backgrounds
 " ---- Trailing/Bleeding Whitespace ----
 
 " shamelessly stolen from Ciaran McCreesh <ciaran.mccreesh@gmail.com>
-if &termencoding == "utf-8" || has("gui_running")
+if has("gui_running") || !exists('+termencoding') || &termencoding ==# 'utf-8'
   set list listchars=tab:»·,trail:·,extends:…,nbsp:‗
 else
   set list listchars=tab:>-,trail:.,extends:>,nbsp:_
